@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SHOPGUITARSINHVIENModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="HoKH" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnhKH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DiaChiKH" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GioiTinhKH" Type="Boolean" />
+    <Property Name="NgaySinhKH" Type="DateTime" Precision="0" />
+    <Property Name="LoaiKH" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__KHACHHANG__user___571DF1D5" FromRole="KHACHHANG" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_id" Type="Int32" Nullable="false" />
+    <Property Name="HoNV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TenNV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="AnhNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmailNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SDTNV" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DiaChiNV" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="GioiTinhNV" Type="Boolean" Nullable="false" />
+    <Property Name="NgaySinhNV" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TrangThaiLamViec" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NgayVaoLam" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="USER" Relationship="Self.FK__NHANVIEN__user_i__534D60F1" FromRole="NHANVIEN" ToRole="USERS" />
+  </EntityType>
+  <EntityType Name="USER">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="user_email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="user_phone" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="last_login" Type="DateTime" Precision="3" />
+    <Property Name="user_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="created_at" Type="DateTime" Precision="3" />
+    <Property Name="user_role" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="KHACHHANGs" Relationship="Self.FK__KHACHHANG__user___571DF1D5" FromRole="USERS" ToRole="KHACHHANG" />
+    <NavigationProperty Name="NHANVIENs" Relationship="Self.FK__NHANVIEN__user_i__534D60F1" FromRole="USERS" ToRole="NHANVIEN" />
+  </EntityType>
+  <Association Name="FK__KHACHHANG__user___571DF1D5">
+    <End Role="USERS" Type="Self.USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="KHACHHANG">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NHANVIEN__user_i__534D60F1">
+    <End Role="USERS" Type="Self.USER" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SHOPGUITARSINHVIENEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="USERS" EntityType="Self.USER" />
+    <AssociationSet Name="FK__KHACHHANG__user___571DF1D5" Association="Self.FK__KHACHHANG__user___571DF1D5">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NHANVIEN__user_i__534D60F1" Association="Self.FK__NHANVIEN__user_i__534D60F1">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+    </AssociationSet>
+    <EntitySet Name="DANHMUCSANPHAMs" EntityType="SHOPGUITARSINHVIENModel.DANHMUCSANPHAM" />
+    <EntitySet Name="SANPHAMs" EntityType="SHOPGUITARSINHVIENModel.SANPHAM" />
+    <AssociationSet Name="FK__SANPHAM__MaLoaiS__5FB337D6" Association="SHOPGUITARSINHVIENModel.FK__SANPHAM__MaLoaiS__5FB337D6">
+      <End Role="DANHMUCSANPHAM" EntitySet="DANHMUCSANPHAMs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="DANHMUCSANPHAM">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TenLoaiSP" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="SANPHAMs" Relationship="SHOPGUITARSINHVIENModel.FK__SANPHAM__MaLoaiS__5FB337D6" FromRole="DANHMUCSANPHAM" ToRole="SANPHAM" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TenSP" Type="String" Nullable="false" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="AnhSP" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MoTaSP" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GiaNhap" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="GiaBan" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TrangThaiSP" Type="Boolean" Nullable="false" />
+    <Property Name="ThuongHieu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="NgayThemSP" Type="DateTime" Precision="3" />
+    <Property Name="MaLoaiSP" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DANHMUCSANPHAM" Relationship="SHOPGUITARSINHVIENModel.FK__SANPHAM__MaLoaiS__5FB337D6" FromRole="SANPHAM" ToRole="DANHMUCSANPHAM" />
+    <Property Name="SoLuongTon" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__SANPHAM__MaLoaiS__5FB337D6">
+    <End Type="SHOPGUITARSINHVIENModel.DANHMUCSANPHAM" Role="DANHMUCSANPHAM" Multiplicity="0..1" />
+    <End Type="SHOPGUITARSINHVIENModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DANHMUCSANPHAM">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36518.9 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOPGUITAR", "SHOPGUITAR\SHOPGUITAR.csproj", "{01113104-B928-4C2D-93C5-F239CB63063B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{01113104-B928-4C2D-93C5-F239CB63063B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01113104-B928-4C2D-93C5-F239CB63063B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01113104-B928-4C2D-93C5-F239CB63063B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01113104-B928-4C2D-93C5-F239CB63063B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {92C3D1E6-5AA1-448F-BA8D-03F58FDCF884}
+	EndGlobalSection
+EndGlobal

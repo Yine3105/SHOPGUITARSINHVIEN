@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SHOPGUITARSINHVIENModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DANHMUCSANPHAM">
+    <Key>
+      <PropertyRef Name="MaLoaiSP" />
+    </Key>
+    <Property Name="MaLoaiSP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TenLoaiSP" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MaKH" />
+    </Key>
+    <Property Name="MaKH" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="HoKH" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenKH" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="AnhKH" Type="nvarchar(max)" />
+    <Property Name="DiaChiKH" Type="nvarchar(max)" />
+    <Property Name="GioiTinhKH" Type="bit" />
+    <Property Name="NgaySinhKH" Type="date" />
+    <Property Name="LoaiKH" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MaNV" />
+    </Key>
+    <Property Name="MaNV" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="user_id" Type="int" Nullable="false" />
+    <Property Name="HoNV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TenNV" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="AnhNV" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EmailNV" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SDTNV" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DiaChiNV" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="GioiTinhNV" Type="bit" Nullable="false" />
+    <Property Name="NgaySinhNV" Type="date" Nullable="false" />
+    <Property Name="TrangThaiLamViec" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="NgayVaoLam" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MaSP" />
+    </Key>
+    <Property Name="MaSP" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TenSP" Type="nvarchar" MaxLength="40" Nullable="false" />
+    <Property Name="AnhSP" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MoTaSP" Type="nvarchar(max)" />
+    <Property Name="GiaNhap" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="GiaBan" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="TrangThaiSP" Type="bit" Nullable="false" />
+    <Property Name="ThuongHieu" Type="nvarchar" MaxLength="30" />
+    <Property Name="NgayThemSP" Type="datetime" />
+    <Property Name="MaLoaiSP" Type="nvarchar" MaxLength="20" />
+    <Property Name="SoLuongTon" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="USERS">
+    <Key>
+      <PropertyRef Name="user_id" />
+    </Key>
+    <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="user_password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="user_email" Type="nvarchar" MaxLength="255" />
+    <Property Name="user_phone" Type="nvarchar" MaxLength="10" />
+    <Property Name="last_login" Type="datetime" />
+    <Property Name="user_status" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="created_at" Type="datetime" />
+    <Property Name="user_role" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__KHACHHANG__user___5441852A">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="KHACHHANG">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NHANVIEN__user_i__5070F446">
+    <End Role="USERS" Type="Self.USERS" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="USERS">
+        <PropertyRef Name="user_id" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="user_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SANPHAM__MaLoaiS__6477ECF3">
+    <End Role="DANHMUCSANPHAM" Type="Self.DANHMUCSANPHAM" Multiplicity="0..1" />
+    <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DANHMUCSANPHAM">
+        <PropertyRef Name="MaLoaiSP" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaLoaiSP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SHOPGUITARSINHVIENModelStoreContainer">
+    <EntitySet Name="DANHMUCSANPHAM" EntityType="Self.DANHMUCSANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SANPHAM" EntityType="Self.SANPHAM" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="USERS" EntityType="Self.USERS" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__KHACHHANG__user___5441852A" Association="Self.FK__KHACHHANG__user___5441852A">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANG" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NHANVIEN__user_i__5070F446" Association="Self.FK__NHANVIEN__user_i__5070F446">
+      <End Role="USERS" EntitySet="USERS" />
+      <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SANPHAM__MaLoaiS__6477ECF3" Association="Self.FK__SANPHAM__MaLoaiS__6477ECF3">
+      <End Role="DANHMUCSANPHAM" EntitySet="DANHMUCSANPHAM" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

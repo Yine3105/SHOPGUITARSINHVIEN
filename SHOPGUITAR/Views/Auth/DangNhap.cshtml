@@ -1,0 +1,57 @@
+﻿@model SHOPGUITAR.Models.AuthModel.DangNhapModel
+@{
+    Layout = "~/Views/Shared/_Auth.cshtml";
+    ViewBag.Title = "Đăng Nhập";
+}
+
+<div class="login-wrapper">
+    <div class="login-card">
+        <img src="~/Images/Chung/logo.png" alt="logo" />
+        <h2>CHÀO MỪNG BẠN ĐẾN VỚI SHOP GUITAR SINH VIÊN</h2>
+
+        @* Thông báo đăng ký thành công *@
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">@TempData["Success"]</div>
+        }
+
+        @* Thông báo lỗi *@
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        @using (Html.BeginForm("DangNhap", "Auth", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label>Tên đăng nhập / Email / Số điện thoại</label>
+                @Html.TextBoxFor(m => m.TaiKhoan, new
+                {
+                    @class = "form-control",
+                    placeholder = "Nhập tên đăng nhập, email hoặc SĐT"
+                })
+            </div>
+
+            <div class="form-group">
+                <label>Mật khẩu</label>
+                @Html.PasswordFor(m => m.Password, new
+                {
+                    @class = "form-control",
+                    placeholder = "Nhập mật khẩu",
+                    autocomplete = "current-password"
+                })
+            </div>
+
+            <button type="submit" class="btn btn-login">
+                Đăng Nhập
+            </button>
+        }
+
+        <div class="register-link">
+            <span class="text-muted">Chưa có tài khoản? </span>
+            @Html.ActionLink("Đăng ký ngay", "DangKy", "Auth", null, new { @class = "link-dangky" })
+        </div>
+    </div>
+</div>

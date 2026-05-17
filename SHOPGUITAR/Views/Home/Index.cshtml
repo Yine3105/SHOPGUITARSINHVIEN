@@ -1,0 +1,176 @@
+﻿@model SHOPGUITAR.Models.HomeModel
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Home Page";
+}
+
+<div>
+    <div class="banner">
+        <div class="banner-logo">
+            <img src="~/Images/Chung/logo.png" alt="logo" />
+            <h5>GUITAR <br /> SINH VIÊN</h5>
+        </div>
+        <div class="search-form">
+            <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..." />
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </div>
+        <a href="#" class="banner-cart">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </a>
+        @if (Session["UserId"] == null)
+        {
+            <a href="/Auth/DangNhap" class="banner-dangnhap">
+                <i class="fa-solid fa-user"></i>
+                <span>Đăng nhập</span>
+            </a>
+        }
+        else
+        {
+            <div class="user-dropdown">
+                <button class="banner-dangnhap" onclick="toggleDropdown()">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Xin chào, @Session["HoTen"]</span>
+                </button>
+                <div class="dropdown-menu-custom" id="userDropdown">
+                    <a href="#">
+                        <i class="fa-solid fa-key"></i> Đổi mật khẩu
+                    </a>
+                    <a href="/Auth/DangXuat">
+                        <i class="fa-solid fa-right-from-bracket"></i> Đăng xuất
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="main-container">
+
+        @* Sidebar chỉ hiện với Nhân viên / Admin *@
+        @if (Session["UserRole"] != null &&
+            (Session["UserRole"].ToString() == "Admin" ||
+             Session["UserRole"].ToString() == "Quản lý" ||
+             Session["UserRole"].ToString() == "Quản lý kho" ||
+             Session["UserRole"].ToString() == "Nhân viên kho" ||
+             Session["UserRole"].ToString() == "Nhân viên bán hàng"))
+        {
+            <div class="sidebar">
+                <ul>
+                    <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                    <li><a href="#">Quản lý đơn hàng</a></li>
+                    <li><a href="#">Quản lý sản phẩm</a></li>
+                    <li><a href="#">Quản lý khách hàng</a></li>
+                </ul>
+            </div>
+        }
+
+        <div class="content-area">
+            @* Thanh loại sản phẩm *@
+            <div class="loai-sanpham">
+                <a href="@Url.Action("Index", "Home")"
+                   class="loai-item @(Model.LoaiDangChon == null ? "active" : "")">
+                    Tất cả
+                </a>
+
+                @foreach (var loai in Model.DanhSachLoai)
+                {
+                    <a href="@Url.Action("Index", "Home", new { maLoai = loai.MaLoaiSP })"
+                       class="loai-item @(Model.LoaiDangChon == loai.MaLoaiSP ? "active" : "")">
+                        @loai.TenLoaiSP
+                    </a>
+                }
+            </div>
+
+            @* Banner khuyến mãi *@
+            <div class="khuyen-mai">
+                <p>Chương trình khuyến mãi</p>
+            </div>
+
+            @* Danh sách sản phẩm *@
+        <div class="sanpham-list">
+            @if (Model.DanhSachSanPham != null && Model.DanhSachSanPham.Any())
+            {
+                foreach (var sp in Model.DanhSachSanPham)
+                {
+                    <a href="#" class="sanpham-card">
+                        <div class="card-anh">
+                            <img src="~/Images/SanPham/@sp.AnhSP" alt="@sp.TenSP" />
+                        </div>
+                        <div class="card-info">
+                            <p class="card-ten">@sp.TenSP</p>
+                            <p class="card-thuonghieu">@sp.ThuongHieu</p>
+                            <p class="card-gia">@sp.GiaBan.ToString("N0") đ</p>
+                            @if (sp.SoLuongTon > 0)
+                            {
+                                <span class="card-trangthai con-hang">Còn hàng</span>
+                            }
+                            else
+                            {
+                                <span class="card-trangthai het-hang">Hết hàng</span>
+                            }
+                        </div>
+                    </a>
+                }
+            }
+            else
+            {
+                <p class="empty-msg">Không có sản phẩm nào.</p>
+            }
+            
+            @*test css
+                <a href="#" class="sanpham-card">
+                <div class="card-anh">
+                    <img src="~/Images/SanPham/guitar.jpg" alt="" />
+                </div>
+                <div class="card-info">
+                    <p class="card-ten">Đàn</p>
+                    <p class="card-thuonghieu">Yamaha</p>
+                    <p class="card-gia">500000000000000 đ</p>
+                    
+                    <span class="card-trangthai con-hang">Còn hàng</span>
+                </div>
+            </a>
+            <a href="#" class="sanpham-card">
+                <div class="card-anh">
+                    <img src="~/Images/SanPham/guitar.jpg" alt="" />
+                </div>
+                <div class="card-info">
+                    <p class="card-ten">Đàn</p>
+                    <p class="card-thuonghieu">Yamaha</p>
+                    <p class="card-gia">500000000000000 đ</p>
+                    
+                    <span class="card-trangthai con-hang">Còn hàng</span>
+                </div>
+            </a>*@
+        </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function toggleDropdown() {
+            var menu = document.getElementById('userDropdown');
+            menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.addEventListener('click', function (e) {
+            var dropdown = document.querySelector('.user-dropdown');
+            if (dropdown && !dropdown.contains(e.target)) {
+                document.getElementById('userDropdown').style.display = 'none';
+            }
+        });
+
+        const currentPath = window.location.pathname.toLowerCase();
+        document.querySelectorAll('.sidebar ul li a').forEach(function (a) {
+            const href = a.getAttribute('href').toLowerCase();
+            if (href === currentPath ||
+                (currentPath === '/' && href.includes('home')) ||
+                (currentPath.includes(href) && href !== '#')) {
+                a.closest('li').classList.add('active');
+            }
+        });
+    </script>
+}

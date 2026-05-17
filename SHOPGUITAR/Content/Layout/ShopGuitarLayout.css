@@ -1,0 +1,339 @@
+﻿* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+}
+
+.banner {
+    background-color: #952D25;
+    min-height: 95px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px 20px;
+}
+
+.banner-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 0 0 auto
+}
+
+.banner-logo img {
+    width: 75px;
+}
+
+.banner-logo h5 {
+    color: #fff;
+    font-weight: 700
+}
+
+.search-form {
+    display: flex;
+    flex: 1;
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 4px;
+    align-items: center;
+}
+
+    .search-form input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        padding: 4px 8px;
+        font-size: 14px;
+        box-shadow: none;
+    }
+
+        .search-form input:focus {
+            box-shadow: none;
+            border: none;
+        }
+
+    .search-form button {
+        border-radius: 4px;
+        background-color: #952D25;
+        border: none;
+        padding: 6px 14px;
+        color: #fff;
+        font-size: 16px;
+    }
+
+        .search-form button:hover {
+            background-color: #c0392b;
+        }
+
+.banner-cart {
+    color: #fff;
+    cursor: pointer;
+    flex: 0 0 auto;
+    text-decoration: none;
+}
+
+    .banner-cart:hover {
+        color: #000;
+    }
+
+    .banner-cart i {
+        font-size: 18px;
+    }
+
+.banner-dangnhap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-weight: 600;
+    cursor: pointer;
+    flex: 0 0 auto;
+    text-decoration: none;
+}
+
+    .banner-dangnhap:hover {
+        background-color: #fff;
+        color: #952D25;
+    }
+
+    .banner-dangnhap i {
+        font-size: 18px;
+    }
+
+.main-container {
+    display: flex;
+    gap: 16px;
+    padding: 16px;
+}
+
+.sidebar {
+    width: 200px;
+    flex: 0 0 200px;
+    background-color: #952D25;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    height: fit-content;
+}
+
+    .sidebar h6 {
+        font-weight: 700;
+        color: #952D25;
+        margin-bottom: 12px;
+        text-transform: uppercase;
+        font-size: 12px;
+    }
+
+    .sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+        .sidebar ul li {
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+
+            .sidebar ul li:hover {
+                background-color: rgba(255,255,255,0.2);
+            }
+
+            .sidebar ul li.active {
+                background-color: #fff;
+            }
+
+            .sidebar ul li a {
+                display: block; 
+                padding: 8px 10px; 
+                color: #fff;
+                text-decoration: none;
+                font-size: 14px;
+                font-weight: 700;
+            }
+
+            .sidebar ul li:hover a {
+                color: #fff;
+            }
+
+            .sidebar ul li.active a {
+                color: #952D25;
+            }
+
+.content-area {
+    flex: 1; 
+}
+
+.loai-sanpham {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+    justify-content: center
+}
+
+    .loai-sanpham a {
+        padding: 8px 16px;
+        border-radius: 6px;
+        background-color: #fff;
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+        .loai-sanpham a:hover {
+            background-color: #952D25;
+            color: #fff;
+        }
+
+.khuyen-mai {
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    font-size: 18px;
+    color: #aaa;
+}
+
+.sanpham-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.sanpham-item {
+    width: calc(25% - 16px);
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+
+.user-dropdown {
+    position: relative;
+    flex: 0 0 auto;
+}
+
+.dropdown-menu-custom {
+    display: none;
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    min-width: 180px;
+    z-index: 999;
+    overflow: hidden;
+}
+
+    .dropdown-menu-custom a {
+        display: block;
+        padding: 12px 16px;
+        color: #333;
+        text-decoration: none;
+        font-size: 14px;
+        gap: 8px;
+    }
+
+        .dropdown-menu-custom a:hover {
+            background-color: #f5f5f5;
+            color: #952D25;
+        }
+
+        .dropdown-menu-custom a i {
+            margin-right: 8px;
+            width: 16px;
+        }
+
+.sanpham-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    padding: 16px 0;
+}
+
+.sanpham-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
+}
+
+    .sanpham-card:hover {
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        transform: translateY(-4px);
+    }
+
+.card-anh img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.card-info {
+    padding: 10px 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-ten {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-thuonghieu {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.card-gia {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 6px;
+}
+
+.card-trangthai {
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    align-self: flex-end; /* nằm bên phải */
+}
+
+.sanpham-card:hover .card-ten,
+.sanpham-card:hover .card-thuonghieu,
+.sanpham-card:hover .card-gia {
+    color: #952D25;
+}
+
+.con-hang {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.het-hang {
+    background: #fce4ec;
+    color: #c62828;
+}

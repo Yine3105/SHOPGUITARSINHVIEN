@@ -1,0 +1,156 @@
+﻿@model SHOPGUITAR.Models.AuthModel.DangKiModel
+@{
+    Layout = "~/Views/Shared/_Auth.cshtml";
+    ViewBag.Title = "Đăng Ký";
+}
+
+@section Scripts {
+    <script>
+        function previewImage(input) {
+            var preview = document.getElementById('preview');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+}
+
+<div class="register-wrapper">
+    <div class="register-card">
+        <img src="~/Images/Chung/logo.png" alt="logo" />
+        <h2>ĐĂNG KÝ TÀI KHOẢN</h2>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
+
+        @* enctype multipart bắt buộc để upload file *@
+        @using (Html.BeginForm("DangKy", "Auth", FormMethod.Post,
+            new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="section-title">Thông tin tài khoản</div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Tên đăng nhập <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(m => m.UserName, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nhập tên đăng nhập"
+                    })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Email <span class="optional">(có thể bỏ trống)</span></label>
+                    @Html.TextBoxFor(m => m.Email, new
+                    {
+                        @class = "form-control",
+                        placeholder = "example@gmail.com",
+                        type = "email"
+                    })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Số điện thoại <span class="optional">(có thể bỏ trống)</span></label>
+                    @Html.TextBoxFor(m => m.Phone, new
+                    {
+                        @class = "form-control",
+                        placeholder = "",
+                        maxlength = "10"
+                    })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Mật khẩu <span class="text-danger">*</span></label>
+                    @Html.PasswordFor(m => m.Password, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Tối thiểu 6 ký tự"
+                    })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Xác nhận mật khẩu <span class="text-danger">*</span></label>
+                    @Html.PasswordFor(m => m.ConfirmPassword, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nhập lại mật khẩu"
+                    })
+                </div>
+            </div>
+
+            <div class="section-title">Thông tin cá nhân</div>
+            <div class="row">
+                <div class="col-md-4 form-group">
+                    <label>Họ <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(m => m.HoKH, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nguyễn"
+                    })
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Tên <span class="text-danger">*</span></label>
+                    @Html.TextBoxFor(m => m.TenKH, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Văn A"
+                    })
+                </div>
+                <div class="col-md-4 form-group">
+                    <label>Giới tính</label>
+                    <select name="GioiTinhKH" class="form-control">
+                        <option value="true">Nam</option>
+                        <option value="false">Nữ</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label>Ngày sinh</label>
+                    @Html.TextBoxFor(m => m.NgaySinhKH, "{0:yyyy-MM-dd}", new
+                    {
+                        @class = "form-control",
+                        type = "date"
+                    })
+                </div>
+                <div class="col-md-6 form-group">
+                    <label>Địa chỉ</label>
+                    @Html.TextBoxFor(m => m.DiaChiKH, new
+                    {
+                        @class = "form-control",
+                        placeholder = "Số nhà, đường, quận, thành phố"
+                    })
+                </div>
+            </div>
+
+            <div class="section-title">Ảnh đại diện</div>
+            <div class="form-group text-center">
+                <img id="preview" class="preview-img" src="#" alt="preview" />
+                <div>
+                    <input type="file" name="AnhKH" id="AnhKH"
+                           accept="image/*"
+                           class="form-control-file"
+                           onchange="previewImage(this)" />
+                    <small class="text-muted">JPG, PNG, GIF, WEBP — tối đa 2MB</small>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-login mt-2">
+                Đăng Ký
+            </button>
+        }
+
+        <div class="login-link">
+            <span class="text-muted">Đã có tài khoản? </span>
+            @Html.ActionLink("Đăng nhập", "DangNhap", "Auth", null, new { @class = "link-dangky" })
+        </div>
+    </div>
+</div>
