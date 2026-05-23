@@ -4,6 +4,8 @@
     <EntitySetMapping Name="KHACHHANGs">
       <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.KHACHHANG">
         <MappingFragment StoreEntitySet="KHACHHANG">
+          <ScalarProperty Name="SDTKH" ColumnName="SDTKH" />
+          <ScalarProperty Name="EmailKH" ColumnName="EmailKH" />
           <ScalarProperty Name="MaKH" ColumnName="MaKH" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="HoKH" ColumnName="HoKH" />
@@ -37,6 +39,7 @@
     <EntitySetMapping Name="USERS">
       <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.USER">
         <MappingFragment StoreEntitySet="USERS">
+          <ScalarProperty Name="NgayDoiMatKhauGanNhat" ColumnName="NgayDoiMatKhauGanNhat" />
           <ScalarProperty Name="user_id" ColumnName="user_id" />
           <ScalarProperty Name="user_name" ColumnName="user_name" />
           <ScalarProperty Name="user_password" ColumnName="user_password" />
@@ -52,6 +55,7 @@
     <EntitySetMapping Name="DANHMUCSANPHAMs">
       <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.DANHMUCSANPHAM">
         <MappingFragment StoreEntitySet="DANHMUCSANPHAM">
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
           <ScalarProperty Name="TenLoaiSP" ColumnName="TenLoaiSP" />
           <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
         </MappingFragment>
@@ -60,7 +64,7 @@
     <EntitySetMapping Name="SANPHAMs">
       <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.SANPHAM">
         <MappingFragment StoreEntitySet="SANPHAM">
-          <ScalarProperty Name="SoLuongTon" ColumnName="SoLuongTon" />
+          <ScalarProperty Name="SoLuongSP" ColumnName="SoLuongSP" />
           <ScalarProperty Name="MaLoaiSP" ColumnName="MaLoaiSP" />
           <ScalarProperty Name="NgayThemSP" ColumnName="NgayThemSP" />
           <ScalarProperty Name="ThuongHieu" ColumnName="ThuongHieu" />
@@ -74,5 +78,224 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="BBKIEMKEs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.BBKIEMKE">
+        <MappingFragment StoreEntitySet="BBKIEMKE">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+          <ScalarProperty Name="SoBBKK" ColumnName="SoBBKK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BBKIEMNGHIEMs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.BBKIEMNGHIEM">
+        <MappingFragment StoreEntitySet="BBKIEMNGHIEM">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="NgayLap" ColumnName="NgayLap" />
+          <ScalarProperty Name="SoBBKN" ColumnName="SoBBKN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CT_DONHANG">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.CT_DONHANG">
+        <MappingFragment StoreEntitySet="CT_DONHANG">
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CT_PHIEUNHAP">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.CT_PHIEUNHAP">
+        <MappingFragment StoreEntitySet="CT_PHIEUNHAP">
+          <ScalarProperty Name="ThanhTien" ColumnName="ThanhTien" />
+          <ScalarProperty Name="DonGiaNhap" ColumnName="DonGiaNhap" />
+          <ScalarProperty Name="SLThucNhap" ColumnName="SLThucNhap" />
+          <ScalarProperty Name="SLChungTu" ColumnName="SLChungTu" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="SoPN" ColumnName="SoPN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CTKIEMKEs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.CTKIEMKE">
+        <MappingFragment StoreEntitySet="CTKIEMKE">
+          <ScalarProperty Name="PhamChat" ColumnName="PhamChat" />
+          <ScalarProperty Name="SLThieu" ColumnName="SLThieu" />
+          <ScalarProperty Name="SLThua" ColumnName="SLThua" />
+          <ScalarProperty Name="SLThucTe" ColumnName="SLThucTe" />
+          <ScalarProperty Name="SLSoSach" ColumnName="SLSoSach" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="SoBBKK" ColumnName="SoBBKK" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CTKIEMNGHIEMs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.CTKIEMNGHIEM">
+        <MappingFragment StoreEntitySet="CTKIEMNGHIEM">
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="SLLoi" ColumnName="SLLoi" />
+          <ScalarProperty Name="SLDungQuyCach" ColumnName="SLDungQuyCach" />
+          <ScalarProperty Name="SLChungTu" ColumnName="SLChungTu" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="SoBBKN" ColumnName="SoBBKN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONHANGs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.DONHANG">
+        <MappingFragment StoreEntitySet="DONHANG">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="PhuongThucThanhToan" ColumnName="PhuongThucThanhToan" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="KenhBan" ColumnName="KenhBan" />
+          <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DONVIVANCHUYENs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.DONVIVANCHUYEN">
+        <MappingFragment StoreEntitySet="DONVIVANCHUYEN">
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="SoDT" ColumnName="SoDT" />
+          <ScalarProperty Name="TenDVVC" ColumnName="TenDVVC" />
+          <ScalarProperty Name="MaDVVC" ColumnName="MaDVVC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GIOHANGs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.GIOHANG">
+        <MappingFragment StoreEntitySet="GIOHANG">
+          <ScalarProperty Name="MaKH" ColumnName="MaKH" />
+          <ScalarProperty Name="NgayCapNhatGioHang" ColumnName="NgayCapNhatGioHang" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+          <ScalarProperty Name="MaGH" ColumnName="MaGH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HOADONs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.HOADON">
+        <MappingFragment StoreEntitySet="HOADON">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="TrangThaiThanhToan" ColumnName="TrangThaiThanhToan" />
+          <ScalarProperty Name="ThueVAT" ColumnName="ThueVAT" />
+          <ScalarProperty Name="NgayLapHD" ColumnName="NgayLapHD" />
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LICHSUVANCHUYENs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.LICHSUVANCHUYEN">
+        <MappingFragment StoreEntitySet="LICHSUVANCHUYEN">
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="ViTri" ColumnName="ViTri" />
+          <ScalarProperty Name="ThoiGian" ColumnName="ThoiGian" />
+          <ScalarProperty Name="MaVC" ColumnName="MaVC" />
+          <ScalarProperty Name="MaLSVC" ColumnName="MaLSVC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NHACUNGCAPs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.NHACUNGCAP">
+        <MappingFragment StoreEntitySet="NHACUNGCAP">
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="TenNCC" ColumnName="TenNCC" />
+          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PHIEUNHAPs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.PHIEUNHAP">
+        <MappingFragment StoreEntitySet="PHIEUNHAP">
+          <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+          <ScalarProperty Name="MaNCC" ColumnName="MaNCC" />
+          <ScalarProperty Name="TongTienNhap" ColumnName="TongTienNhap" />
+          <ScalarProperty Name="NguoiGiao" ColumnName="NguoiGiao" />
+          <ScalarProperty Name="NgayNhap" ColumnName="NgayNhap" />
+          <ScalarProperty Name="SoPN" ColumnName="SoPN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="THAMSOes">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.THAMSO">
+        <MappingFragment StoreEntitySet="THAMSO">
+          <ScalarProperty Name="TinhTrang" ColumnName="TinhTrang" />
+          <ScalarProperty Name="GiaTri" ColumnName="GiaTri" />
+          <ScalarProperty Name="Kieu_DVT" ColumnName="Kieu_DVT" />
+          <ScalarProperty Name="TenTS" ColumnName="TenTS" />
+          <ScalarProperty Name="MaTS" ColumnName="MaTS" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VANCHUYENs">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.VANCHUYEN">
+        <MappingFragment StoreEntitySet="VANCHUYEN">
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="TrangThai" ColumnName="TrangThai" />
+          <ScalarProperty Name="NgayNhanHang" ColumnName="NgayNhanHang" />
+          <ScalarProperty Name="NgayDuKien" ColumnName="NgayDuKien" />
+          <ScalarProperty Name="NgayGuiHang" ColumnName="NgayGuiHang" />
+          <ScalarProperty Name="PhiVanChuyen" ColumnName="PhiVanChuyen" />
+          <ScalarProperty Name="LoaiPhi" ColumnName="LoaiPhi" />
+          <ScalarProperty Name="MaDVVC" ColumnName="MaDVVC" />
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="MaVC" ColumnName="MaVC" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="V_HOADON">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.V_HOADON">
+        <MappingFragment StoreEntitySet="V_HOADON">
+          <ScalarProperty Name="NgayNhanHang" ColumnName="NgayNhanHang" />
+          <ScalarProperty Name="NgayDuKien" ColumnName="NgayDuKien" />
+          <ScalarProperty Name="NgayGuiHang" ColumnName="NgayGuiHang" />
+          <ScalarProperty Name="TrangThaiVanChuyen" ColumnName="TrangThaiVanChuyen" />
+          <ScalarProperty Name="LoaiPhi" ColumnName="LoaiPhi" />
+          <ScalarProperty Name="TenDVVC" ColumnName="TenDVVC" />
+          <ScalarProperty Name="TongTien" ColumnName="TongTien" />
+          <ScalarProperty Name="PhiVanChuyen" ColumnName="PhiVanChuyen" />
+          <ScalarProperty Name="TienThue" ColumnName="TienThue" />
+          <ScalarProperty Name="TongTamTinh" ColumnName="TongTamTinh" />
+          <ScalarProperty Name="DiaChiKH" ColumnName="DiaChiKH" />
+          <ScalarProperty Name="SoDTKhachHang" ColumnName="SoDTKhachHang" />
+          <ScalarProperty Name="TenKH" ColumnName="TenKH" />
+          <ScalarProperty Name="NVNhanDon" ColumnName="NVNhanDon" />
+          <ScalarProperty Name="TrangThaiDonHang" ColumnName="TrangThaiDonHang" />
+          <ScalarProperty Name="PhuongThucThanhToan" ColumnName="PhuongThucThanhToan" />
+          <ScalarProperty Name="KenhBan" ColumnName="KenhBan" />
+          <ScalarProperty Name="NgayDatHang" ColumnName="NgayDatHang" />
+          <ScalarProperty Name="MaDH" ColumnName="MaDH" />
+          <ScalarProperty Name="NVLapHoaDon" ColumnName="NVLapHoaDon" />
+          <ScalarProperty Name="ThueVAT" ColumnName="ThueVAT" />
+          <ScalarProperty Name="TrangThaiThanhToan" ColumnName="TrangThaiThanhToan" />
+          <ScalarProperty Name="NgayLapHD" ColumnName="NgayLapHD" />
+          <ScalarProperty Name="MaHD" ColumnName="MaHD" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VW_BaoCaoTonKho">
+      <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.VW_BaoCaoTonKho">
+        <MappingFragment StoreEntitySet="VW_BaoCaoTonKho">
+          <ScalarProperty Name="TrangThaiCanhBao" ColumnName="TrangThaiCanhBao" />
+          <ScalarProperty Name="TonKhoThucTe" ColumnName="TonKhoThucTe" />
+          <ScalarProperty Name="TongSoLuongBan" ColumnName="TongSoLuongBan" />
+          <ScalarProperty Name="TongSoLuongNhap" ColumnName="TongSoLuongNhap" />
+          <ScalarProperty Name="TenSP" ColumnName="TenSP" />
+          <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="LAPPHIEUNHAP" FunctionName="SHOPGUITARSINHVIENModel.Store.LAPPHIEUNHAP" />
+    <FunctionImportMapping FunctionImportName="SP_DoiMatKhau" FunctionName="SHOPGUITARSINHVIENModel.Store.SP_DoiMatKhau" />
   </EntityContainerMapping>
 </Mapping>

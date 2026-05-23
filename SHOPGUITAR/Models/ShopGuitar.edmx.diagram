@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1eacdc7efd8146369d1b30920f501eba" Name="Diagram1">
+      <Diagram DiagramId="1eacdc7efd8146369d1b30920f501eba" Name="Diagram1" ZoomLevel="118">
         <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.KHACHHANG" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.NHANVIEN" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.USER" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
@@ -13,6 +13,44 @@
         <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.DANHMUCSANPHAM" Width="1.5" PointX="5.375" PointY="1.75" />
         <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.SANPHAM" Width="1.5" PointX="7.625" PointY="1" />
         <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__SANPHAM__MaLoaiS__5FB337D6" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.BBKIEMKE" Width="1.5" PointX="5.625" PointY="11" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.BBKIEMNGHIEM" Width="1.5" PointX="5.625" PointY="8.25" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.CT_DONHANG" Width="1.5" PointX="15.875" PointY="2.375" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.CT_PHIEUNHAP" Width="1.5" PointX="16.875" PointY="5.5" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.CTKIEMKE" Width="1.5" PointX="11.25" PointY="9.75" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.CTKIEMNGHIEM" Width="1.5" PointX="13.25" PointY="2.375" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.DONHANG" Width="1.5" PointX="8.625" PointY="6.625" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.DONVIVANCHUYEN" Width="1.5" PointX="11.625" PointY="13.375" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.GIOHANG" Width="1.5" PointX="10.25" PointY="2" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.HOADON" Width="1.5" PointX="13.875" PointY="6.375" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.LICHSUVANCHUYEN" Width="1.5" PointX="16.125" PointY="10.25" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.NHACUNGCAP" Width="1.5" PointX="9.375" PointY="13.25" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.PHIEUNHAP" Width="1.5" PointX="11.625" PointY="5.875" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.THAMSO" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.VANCHUYEN" Width="1.5" PointX="13.875" PointY="9.625" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.V_HOADON" Width="1.5" PointX="2.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SHOPGUITARSINHVIENModel.VW_BaoCaoTonKho" Width="1.5" PointX="4.75" PointY="14.75" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__BBKIEMKE__MaNV__619B8048" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CTKIEMKE__SoBBKK__66603565" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__BBKIEMNGHI__MaNV__6B24EA82" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CTKIEMNGH__SoBBK__6E01572D" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CT_DONHANG__MaDH__7D439ABD" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CT_DONHANG__MaSP__7E37BEF6" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CT_PHIEUNH__MaSP__59FA5E80" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CT_PHIEUNH__SoPN__59063A47" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CTKIEMKE__MaSP__6754599E" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__CTKIEMNGHI__MaSP__6EF57B66" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__DONHANG__MaKH__7A672E12" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__DONHANG__MaNV__797309D9" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__HOADON__MaDH__0E6E26BF" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__VANCHUYEN__MaDH__04E4BC85" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__VANCHUYEN__MaDVV__05D8E0BE" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__GIOHANG__MaKH__74AE54BC" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__GIOHANG__MaSP__71D1E811" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__HOADON__MaNV__114A936A" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__LICHSUVANC__MaVC__0A9D95DB" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__PHIEUNHAP__MaNCC__5535A963" />
+        <AssociationConnector Association="SHOPGUITARSINHVIENModel.FK__PHIEUNHAP__MaNV__5629CD9C" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

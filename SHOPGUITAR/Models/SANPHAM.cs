@@ -14,6 +14,16 @@ namespace SHOPGUITAR.Models
     
     public partial class SANPHAM
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SANPHAM()
+        {
+            this.CT_DONHANG = new HashSet<CT_DONHANG>();
+            this.CT_PHIEUNHAP = new HashSet<CT_PHIEUNHAP>();
+            this.CTKIEMKEs = new HashSet<CTKIEMKE>();
+            this.CTKIEMNGHIEMs = new HashSet<CTKIEMNGHIEM>();
+            this.GIOHANGs = new HashSet<GIOHANG>();
+        }
+    
         public string MaSP { get; set; }
         public string TenSP { get; set; }
         public string AnhSP { get; set; }
@@ -24,8 +34,18 @@ namespace SHOPGUITAR.Models
         public string ThuongHieu { get; set; }
         public Nullable<System.DateTime> NgayThemSP { get; set; }
         public string MaLoaiSP { get; set; }
-        public int SoLuongTon { get; set; }
+        public int SoLuongSP { get; set; }
     
         public virtual DANHMUCSANPHAM DANHMUCSANPHAM { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CT_DONHANG> CT_DONHANG { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CT_PHIEUNHAP> CT_PHIEUNHAP { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CTKIEMKE> CTKIEMKEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CTKIEMNGHIEM> CTKIEMNGHIEMs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
     }
 }

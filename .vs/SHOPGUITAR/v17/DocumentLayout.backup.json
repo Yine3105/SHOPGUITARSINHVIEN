@@ -3,8 +3,28 @@
   "WorkspaceRootPath": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|d:\\school\\c\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\shopguitar\\shopguitar\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|d:\\school\\c\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\shopguitar\\shopguitar\\models\\shopguitar.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\models\\shopguitar.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|d:\\school\\c\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\shopguitar\\shopguitar\\models\\sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\models\\sanpham.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\views\\auth\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\views\\auth\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|d:\\school\\c\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\shopguitar\\shopguitar\\models\\shopguitar.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\models\\shopguitar.edmx.diagram||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\content\\layout\\shopguitarlayout.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
@@ -19,20 +39,12 @@
       "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\content\\layout\\auth\\auth.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\content\\layout\\auth\\auth.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\models\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\models\\authmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\views\\auth\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|solutionrelative:shopguitar\\views\\auth\\dangnhap.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{01113104-B928-4C2D-93C5-F239CB63063B}|SHOPGUITAR\\SHOPGUITAR.csproj|D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\shopguitar\\views\\shared\\_auth.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
@@ -71,6 +83,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "SANPHAM.cs",
+              "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\SANPHAM.cs",
+              "RelativeDocumentMoniker": "SHOPGUITAR\\Models\\SANPHAM.cs",
+              "ToolTip": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\SANPHAM.cs",
+              "RelativeToolTip": "SHOPGUITAR\\Models\\SANPHAM.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwCMAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-23T14:17:34.996Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ShopGuitar.edmx.diagram",
+              "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\ShopGuitar.edmx.diagram",
+              "RelativeDocumentMoniker": "SHOPGUITAR\\Models\\ShopGuitar.edmx.diagram",
+              "ToolTip": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\ShopGuitar.edmx.diagram*",
+              "RelativeToolTip": "SHOPGUITAR\\Models\\ShopGuitar.edmx.diagram*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-05-23T14:16:56.826Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ShopGuitar.edmx [Diagram1]",
+              "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\ShopGuitar.edmx",
+              "RelativeDocumentMoniker": "SHOPGUITAR\\Models\\ShopGuitar.edmx",
+              "ToolTip": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\ShopGuitar.edmx [Diagram1]*",
+              "RelativeToolTip": "SHOPGUITAR\\Models\\ShopGuitar.edmx [Diagram1]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2026-05-23T10:56:56.883Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "HomeModel.cs",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\HomeModel.cs",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Models\\HomeModel.cs",
@@ -82,7 +132,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 12,
               "Title": "_HomeLayout.cshtml",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Shared\\_HomeLayout.cshtml",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Views\\Shared\\_HomeLayout.cshtml",
@@ -94,20 +144,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Views\\Home\\Index.cshtml",
-              "ToolTip": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Home\\Index.cshtml",
-              "RelativeToolTip": "SHOPGUITAR\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAFYAAAAAAAAAAADwv3YAAAALAAAAAAAAAA==",
+              "ToolTip": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Home\\Index.cshtml*",
+              "RelativeToolTip": "SHOPGUITAR\\Views\\Home\\Index.cshtml*",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAkwG0AAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-05-17T05:23:07.721Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "auth.css",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Content\\Layout\\Auth\\auth.css",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Content\\Layout\\Auth\\auth.css",
@@ -119,7 +169,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 11,
               "Title": "_Auth.cshtml",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Shared\\_Auth.cshtml",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Views\\Shared\\_Auth.cshtml",
@@ -131,7 +181,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "ShopGuitarLayout.css",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Content\\Layout\\ShopGuitarLayout.css",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Content\\Layout\\ShopGuitarLayout.css",
@@ -139,12 +189,11 @@
               "RelativeToolTip": "SHOPGUITAR\\Content\\Layout\\ShopGuitarLayout.css",
               "ViewState": "AgIAACoBAAAAAAAAAAAIwFIBAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-05-17T03:44:30.744Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-05-17T03:44:30.744Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 13,
               "Title": "DangKy.cshtml",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Auth\\DangKy.cshtml",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Views\\Auth\\DangKy.cshtml",
@@ -156,7 +205,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 10,
               "Title": "AuthModel.cs",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Models\\AuthModel.cs",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Models\\AuthModel.cs",
@@ -168,31 +217,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 3,
               "Title": "DangNhap.cshtml",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Auth\\DangNhap.cshtml",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Views\\Auth\\DangNhap.cshtml",
               "ToolTip": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Views\\Auth\\DangNhap.cshtml",
               "RelativeToolTip": "SHOPGUITAR\\Views\\Auth\\DangNhap.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA1AAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-05-16T17:09:03.921Z"
+              "WhenOpened": "2026-05-16T17:09:03.921Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Controllers\\AuthController.cs",
               "ToolTip": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Controllers\\AuthController.cs",
               "RelativeToolTip": "SHOPGUITAR\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABRAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-05-16T16:58:29.412Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 8,
               "Title": "HomeController.cs",
               "DocumentMoniker": "D:\\School\\C\u00F4ng ngh\u1EC7 ph\u1EA7n m\u1EC1m\\SHOPGUITAR\\SHOPGUITAR\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "SHOPGUITAR\\Controllers\\HomeController.cs",

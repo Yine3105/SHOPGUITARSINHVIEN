@@ -30,6 +30,7 @@ namespace SHOPGUITAR.Models
         public string user_status { get; set; }
         public Nullable<System.DateTime> created_at { get; set; }
         public string user_role { get; set; }
+        public Nullable<System.DateTime> NgayDoiMatKhauGanNhat { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }

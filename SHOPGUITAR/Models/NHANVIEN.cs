@@ -14,6 +14,16 @@ namespace SHOPGUITAR.Models
     
     public partial class NHANVIEN
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public NHANVIEN()
+        {
+            this.BBKIEMKEs = new HashSet<BBKIEMKE>();
+            this.BBKIEMNGHIEMs = new HashSet<BBKIEMNGHIEM>();
+            this.DONHANGs = new HashSet<DONHANG>();
+            this.HOADONs = new HashSet<HOADON>();
+            this.PHIEUNHAPs = new HashSet<PHIEUNHAP>();
+        }
+    
         public string MaNV { get; set; }
         public int user_id { get; set; }
         public string HoNV { get; set; }
@@ -28,5 +38,15 @@ namespace SHOPGUITAR.Models
         public System.DateTime NgayVaoLam { get; set; }
     
         public virtual USER USER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BBKIEMKE> BBKIEMKEs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<BBKIEMNGHIEM> BBKIEMNGHIEMs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONHANG> DONHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HOADON> HOADONs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PHIEUNHAP> PHIEUNHAPs { get; set; }
     }
 }

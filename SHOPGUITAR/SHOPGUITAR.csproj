@@ -151,14 +151,53 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AuthModel.cs" />
+    <Compile Include="Models\BBKIEMKE.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BBKIEMNGHIEM.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTKIEMKE.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CTKIEMNGHIEM.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_DONHANG.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CT_PHIEUNHAP.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\DANHMUCSANPHAM.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DONHANG.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DONVIVANCHUYEN.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GIOHANG.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HOADON.cs">
       <DependentUpon>ShopGuitar.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Models\KHACHHANG.cs">
       <DependentUpon>ShopGuitar.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LICHSUVANCHUYEN.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHACUNGCAP.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\NHANVIEN.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\PHIEUNHAP.cs">
       <DependentUpon>ShopGuitar.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SANPHAM.cs">
@@ -179,7 +218,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ShopGuitar.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\THAMSO.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\USER.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VANCHUYEN.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VW_BaoCaoTonKho.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\V_HOADON.cs">
       <DependentUpon>ShopGuitar.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

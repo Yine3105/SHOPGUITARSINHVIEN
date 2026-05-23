@@ -14,6 +14,13 @@ namespace SHOPGUITAR.Models
     
     public partial class KHACHHANG
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public KHACHHANG()
+        {
+            this.DONHANGs = new HashSet<DONHANG>();
+            this.GIOHANGs = new HashSet<GIOHANG>();
+        }
+    
         public string MaKH { get; set; }
         public int user_id { get; set; }
         public string HoKH { get; set; }
@@ -23,7 +30,13 @@ namespace SHOPGUITAR.Models
         public Nullable<bool> GioiTinhKH { get; set; }
         public Nullable<System.DateTime> NgaySinhKH { get; set; }
         public string LoaiKH { get; set; }
+        public string EmailKH { get; set; }
+        public string SDTKH { get; set; }
     
         public virtual USER USER { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DONHANG> DONHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
     }
 }

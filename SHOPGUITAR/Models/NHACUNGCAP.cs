@@ -12,19 +12,20 @@ namespace SHOPGUITAR.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class DANHMUCSANPHAM
+    public partial class NHACUNGCAP
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public DANHMUCSANPHAM()
+        public NHACUNGCAP()
         {
-            this.SANPHAMs = new HashSet<SANPHAM>();
+            this.PHIEUNHAPs = new HashSet<PHIEUNHAP>();
         }
     
-        public string MaLoaiSP { get; set; }
-        public string TenLoaiSP { get; set; }
-        public string MoTa { get; set; }
+        public string MaNCC { get; set; }
+        public string TenNCC { get; set; }
+        public string DiaChi { get; set; }
+        public string SDT { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SANPHAM> SANPHAMs { get; set; }
+        public virtual ICollection<PHIEUNHAP> PHIEUNHAPs { get; set; }
     }
 }

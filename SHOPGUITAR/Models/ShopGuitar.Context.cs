@@ -12,6 +12,8 @@ namespace SHOPGUITAR.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SHOPGUITARSINHVIENEntities : DbContext
     {
@@ -30,5 +32,60 @@ namespace SHOPGUITAR.Models
         public virtual DbSet<USER> USERS { get; set; }
         public virtual DbSet<DANHMUCSANPHAM> DANHMUCSANPHAMs { get; set; }
         public virtual DbSet<SANPHAM> SANPHAMs { get; set; }
+        public virtual DbSet<BBKIEMKE> BBKIEMKEs { get; set; }
+        public virtual DbSet<BBKIEMNGHIEM> BBKIEMNGHIEMs { get; set; }
+        public virtual DbSet<CT_DONHANG> CT_DONHANG { get; set; }
+        public virtual DbSet<CT_PHIEUNHAP> CT_PHIEUNHAP { get; set; }
+        public virtual DbSet<CTKIEMKE> CTKIEMKEs { get; set; }
+        public virtual DbSet<CTKIEMNGHIEM> CTKIEMNGHIEMs { get; set; }
+        public virtual DbSet<DONHANG> DONHANGs { get; set; }
+        public virtual DbSet<DONVIVANCHUYEN> DONVIVANCHUYENs { get; set; }
+        public virtual DbSet<GIOHANG> GIOHANGs { get; set; }
+        public virtual DbSet<HOADON> HOADONs { get; set; }
+        public virtual DbSet<LICHSUVANCHUYEN> LICHSUVANCHUYENs { get; set; }
+        public virtual DbSet<NHACUNGCAP> NHACUNGCAPs { get; set; }
+        public virtual DbSet<PHIEUNHAP> PHIEUNHAPs { get; set; }
+        public virtual DbSet<THAMSO> THAMSOes { get; set; }
+        public virtual DbSet<VANCHUYEN> VANCHUYENs { get; set; }
+        public virtual DbSet<V_HOADON> V_HOADON { get; set; }
+        public virtual DbSet<VW_BaoCaoTonKho> VW_BaoCaoTonKho { get; set; }
+    
+        public virtual ObjectResult<string> LAPPHIEUNHAP(string soPN, string nguoiGiao, string maNCC, string maNV)
+        {
+            var soPNParameter = soPN != null ?
+                new ObjectParameter("SoPN", soPN) :
+                new ObjectParameter("SoPN", typeof(string));
+    
+            var nguoiGiaoParameter = nguoiGiao != null ?
+                new ObjectParameter("NguoiGiao", nguoiGiao) :
+                new ObjectParameter("NguoiGiao", typeof(string));
+    
+            var maNCCParameter = maNCC != null ?
+                new ObjectParameter("MaNCC", maNCC) :
+                new ObjectParameter("MaNCC", typeof(string));
+    
+            var maNVParameter = maNV != null ?
+                new ObjectParameter("MaNV", maNV) :
+                new ObjectParameter("MaNV", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("LAPPHIEUNHAP", soPNParameter, nguoiGiaoParameter, maNCCParameter, maNVParameter);
+        }
+    
+        public virtual ObjectResult<string> SP_DoiMatKhau(string username, string oldPass, string newPass)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var oldPassParameter = oldPass != null ?
+                new ObjectParameter("OldPass", oldPass) :
+                new ObjectParameter("OldPass", typeof(string));
+    
+            var newPassParameter = newPass != null ?
+                new ObjectParameter("NewPass", newPass) :
+                new ObjectParameter("NewPass", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_DoiMatKhau", usernameParameter, oldPassParameter, newPassParameter);
+        }
     }
 }
