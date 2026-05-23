@@ -23,7 +23,7 @@ user_status NVARCHAR(50) NOT NULL,
 created_at DATETIME DEFAULT GETDATE(),
 user_role NVARCHAR(30) NOT NULL DEFAULT N'Khách hàng',
 NgayDoiMatKhauGanNhat DATETIME DEFAULT GETDATE(),
-CHECK (user_email is not null or user_phone is not null)
+CHECK (user_email IS NOT NULL OR user_phone IS NOT NULL)
 )
 GO
 
@@ -115,7 +115,6 @@ PRIMARY KEY (SoPN, MaSP)
 )
 GO
 
--- Sửa: MaNV đổi thành NVARCHAR(20) để khớp với NHANVIEN.MaNV
 CREATE TABLE BBKIEMKE (
 SoBBKK NVARCHAR(20) NOT NULL,
 NgayLap DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -126,7 +125,6 @@ FOREIGN KEY (MaNV) REFERENCES NHANVIEN(MaNV)
 )
 GO
 
--- Sửa: SoBBKK và MaSP đổi thành NVARCHAR(20) để khớp
 CREATE TABLE CTKIEMKE (
 SoBBKK NVARCHAR(20) NOT NULL,
 MaSP NVARCHAR(20) NOT NULL,
@@ -141,7 +139,6 @@ FOREIGN KEY (MaSP) REFERENCES SANPHAM(MaSP)
 )
 GO
 
--- Sửa: MaNV đổi thành NVARCHAR(20) để khớp với NHANVIEN.MaNV
 CREATE TABLE BBKIEMNGHIEM (
 SoBBKN NVARCHAR(20) NOT NULL,
 NgayLap DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -151,7 +148,6 @@ FOREIGN KEY (MaNV) REFERENCES NHANVIEN(MaNV)
 )
 GO
 
--- Sửa: SoBBKN và MaSP đổi thành NVARCHAR(20) để khớp
 CREATE TABLE CTKIEMNGHIEM (
 SoBBKN NVARCHAR(20) NOT NULL,
 MaSP NVARCHAR(20) NOT NULL,
@@ -174,6 +170,37 @@ MaKH NVARCHAR(20) NULL REFERENCES KHACHHANG(MaKH)
 )
 GO
 
+CREATE TABLE KHUYENMAI (
+MaKM NVARCHAR(20) PRIMARY KEY,
+TenKM NVARCHAR(100) NOT NULL,
+MoTaKM NVARCHAR(MAX) NULL,
+AnhBannerKM NVARCHAR(MAX) NULL,
+ThuTuHienThi INT NULL,
+MaVoucher NVARCHAR(50) UNIQUE NULL,
+LoaiGiam NVARCHAR(20) NOT NULL CHECK (LoaiGiam IN (N'Phần trăm', N'Số tiền')),
+GiaTriGiam DECIMAL(18,2) NOT NULL CHECK (GiaTriGiam > 0),
+GiamToiDa DECIMAL(18,0) NULL,
+DonToiThieu DECIMAL(18,0) NOT NULL DEFAULT 0,
+SoLuotToiDa INT NULL,
+SoLuotDaDung INT NOT NULL DEFAULT 0,
+SoLanDungMoiKH INT NOT NULL DEFAULT 1,
+NgayBatDau DATETIME NOT NULL,
+NgayKetThuc DATETIME NOT NULL,
+TrangThaiKM NVARCHAR(20) NOT NULL DEFAULT N'Hoạt động' CHECK (TrangThaiKM IN (N'Hoạt động', N'Hết hạn')),
+NgayTao DATETIME NOT NULL DEFAULT GETDATE(),
+MaNV NVARCHAR(20) NULL REFERENCES NHANVIEN(MaNV),
+CHECK (NgayKetThuc > NgayBatDau),
+CHECK (GiaTriGiam <= 100 OR LoaiGiam <> N'Phần trăm')
+)
+GO
+
+CREATE TABLE KHUYENMAI_SANPHAM (
+MaKM NVARCHAR(20) NOT NULL REFERENCES KHUYENMAI(MaKM) ON DELETE CASCADE,
+MaSP NVARCHAR(20) NOT NULL REFERENCES SANPHAM(MaSP),
+PRIMARY KEY (MaKM, MaSP)
+)
+GO
+
 CREATE TABLE DONHANG (
 MaDH NVARCHAR(20) PRIMARY KEY,
 NgayDatHang DATETIME NOT NULL DEFAULT GETDATE(),
@@ -182,7 +209,9 @@ TrangThai NVARCHAR(20) NOT NULL DEFAULT N'ChoXacNhan',
 PhuongThucThanhToan NVARCHAR(20) NOT NULL,
 GhiChu NVARCHAR(MAX),
 MaNV NVARCHAR(20) REFERENCES NHANVIEN(MaNV),
-MaKH NVARCHAR(20) NULL REFERENCES KHACHHANG(MaKH)
+MaKH NVARCHAR(20) NULL REFERENCES KHACHHANG(MaKH),
+MaKM NVARCHAR(20) NULL REFERENCES KHUYENMAI(MaKM),
+SoTienGiam DECIMAL(18,0) NOT NULL DEFAULT 0 CHECK (SoTienGiam >= 0)
 )
 GO
 
@@ -288,7 +317,6 @@ GROUP BY MaSP
 END
 GO
 
--- Sửa: ThanhTien là computed column, không có trong inserted → tính lại từ SLThucNhap * DonGiaNhap
 CREATE TRIGGER CAPNHATTONGTIEN
 ON CT_PHIEUNHAP
 AFTER INSERT
@@ -364,7 +392,8 @@ kh.DiaChiKH,
 SUM(ct.ThanhTien) AS TongTamTinh,
 SUM(ct.ThanhTien) * hd.ThueVAT / 100 AS TienThue,
 ISNULL(vc.PhiVanChuyen, 0) AS PhiVanChuyen,
-SUM(ct.ThanhTien) + SUM(ct.ThanhTien) * hd.ThueVAT / 100 + ISNULL(vc.PhiVanChuyen, 0) AS TongTien,
+dh.SoTienGiam,
+SUM(ct.ThanhTien) + SUM(ct.ThanhTien) * hd.ThueVAT / 100 + ISNULL(vc.PhiVanChuyen, 0) - dh.SoTienGiam AS TongTien,
 dv.TenDVVC,
 vc.LoaiPhi,
 vc.TrangThai AS TrangThaiVanChuyen,
@@ -382,7 +411,7 @@ LEFT JOIN DONVIVANCHUYEN dv ON vc.MaDVVC = dv.MaDVVC
 GROUP BY
 hd.MaHD, hd.NgayLapHD, hd.TrangThaiThanhToan, hd.ThueVAT,
 nv_hd.TenNV,
-dh.MaDH, dh.NgayDatHang, dh.KenhBan, dh.PhuongThucThanhToan, dh.TrangThai,
+dh.MaDH, dh.NgayDatHang, dh.KenhBan, dh.PhuongThucThanhToan, dh.TrangThai, dh.SoTienGiam,
 nv_dh.TenNV,
 kh.TenKH, kh.SDTKH, kh.DiaChiKH,
 vc.PhiVanChuyen, vc.LoaiPhi,
@@ -465,10 +494,30 @@ INSERT INTO DONVIVANCHUYEN (MaDVVC, TenDVVC, SoDT, DiaChi) VALUES
 ('DVVC003', N'J&T Express', '19001922', N'TP.HCM')
 GO
 
-INSERT INTO DONHANG (MaDH, NgayDatHang, KenhBan, TrangThai, PhuongThucThanhToan, GhiChu, MaNV, MaKH) VALUES
-('DH001', '2024-03-01', N'Online', N'HoanThanh', N'Chuyển khoản', N'Giao giờ hành chính', 'NV005', 'KH001'),
-('DH002', '2024-03-10', N'Tại quầy', N'HoanThanh', N'Tiền mặt', NULL, 'NV005', 'KH001'),
-('DH003', '2024-04-05', N'Online', N'ChoXacNhan', N'Chuyển khoản', N'Gọi trước khi giao', 'NV005', 'KH001')
+INSERT INTO KHUYENMAI (MaKM, TenKM, MoTaKM, AnhBannerKM, ThuTuHienThi, MaVoucher, LoaiGiam, GiaTriGiam, GiamToiDa, DonToiThieu, SoLuotToiDa, SoLuotDaDung, SoLanDungMoiKH, NgayBatDau, NgayKetThuc, TrangThaiKM, NgayTao, MaNV) VALUES
+('KM001', N'Giảm 10% cho đơn từ 1 triệu', N'Áp dụng cho tất cả sản phẩm', NULL, 1, N'GIAM10', N'Phần trăm', 10.00, 200000, 1000000, 100, 0, 1, '2024-01-01', '2024-12-31', N'Hoạt động', '2024-01-01', 'NV002'),
+('KM002', N'Giảm 50K cho đơn từ 500K', N'Áp dụng cho phụ kiện', NULL, 2, N'PK50K', N'Số tiền', 50000.00, NULL, 500000, 50, 0, 1, '2024-02-01', '2024-06-30', N'Hết hạn', '2024-02-01', 'NV002'),
+('KM003', N'Giảm 5% không giới hạn đơn', N'Dành cho khách hàng thân thiết', NULL, 3, N'LOYAL5', N'Phần trăm', 5.00, 500000, 0, NULL, 0, 3, '2024-03-01', '2024-12-31', N'Hoạt động', '2024-03-01', 'NV002')
+GO
+
+INSERT INTO KHUYENMAI_SANPHAM (MaKM, MaSP) VALUES
+('KM001', 'SP001'),
+('KM001', 'SP002'),
+('KM001', 'SP003'),
+('KM001', 'SP006'),
+('KM001', 'SP007'),
+('KM002', 'SP008'),
+('KM002', 'SP009'),
+('KM002', 'SP010'),
+('KM003', 'SP001'),
+('KM003', 'SP004'),
+('KM003', 'SP005')
+GO
+
+INSERT INTO DONHANG (MaDH, NgayDatHang, KenhBan, TrangThai, PhuongThucThanhToan, GhiChu, MaNV, MaKH, MaKM, SoTienGiam) VALUES
+('DH001', '2024-03-01', N'Online', N'HoanThanh', N'Chuyển khoản', N'Giao giờ hành chính', 'NV005', 'KH001', NULL, 0),
+('DH002', '2024-03-10', N'Tại quầy', N'HoanThanh', N'Tiền mặt', NULL, 'NV005', 'KH001', NULL, 0),
+('DH003', '2024-04-05', N'Online', N'ChoXacNhan', N'Chuyển khoản', N'Gọi trước khi giao', 'NV005', 'KH001', NULL, 0)
 GO
 
 INSERT INTO CT_DONHANG (MaDH, MaSP, SoLuong, DonGia) VALUES

@@ -22,6 +22,7 @@ namespace SHOPGUITAR.Models
             this.CTKIEMKEs = new HashSet<CTKIEMKE>();
             this.CTKIEMNGHIEMs = new HashSet<CTKIEMNGHIEM>();
             this.GIOHANGs = new HashSet<GIOHANG>();
+            this.KHUYENMAIs = new HashSet<KHUYENMAI>();
         }
     
         public string MaSP { get; set; }
@@ -47,5 +48,7 @@ namespace SHOPGUITAR.Models
         public virtual ICollection<CTKIEMNGHIEM> CTKIEMNGHIEMs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KHUYENMAI> KHUYENMAIs { get; set; }
     }
 }

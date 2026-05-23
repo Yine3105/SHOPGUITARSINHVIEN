@@ -38,5 +38,6 @@ namespace SHOPGUITAR.Models
         public Nullable<System.DateTime> NgayGuiHang { get; set; }
         public Nullable<System.DateTime> NgayDuKien { get; set; }
         public Nullable<System.DateTime> NgayNhanHang { get; set; }
+        public decimal SoTienGiam { get; set; }
     }
 }

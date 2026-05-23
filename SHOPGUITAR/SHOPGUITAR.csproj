@@ -188,6 +188,9 @@
     <Compile Include="Models\KHACHHANG.cs">
       <DependentUpon>ShopGuitar.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\KHUYENMAI.cs">
+      <DependentUpon>ShopGuitar.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\LICHSUVANCHUYEN.cs">
       <DependentUpon>ShopGuitar.tt</DependentUpon>
     </Compile>

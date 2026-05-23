@@ -90,6 +90,8 @@
           <Property Name="GhiChu" Type="nvarchar(max)" />
           <Property Name="MaNV" Type="nvarchar" MaxLength="20" />
           <Property Name="MaKH" Type="nvarchar" MaxLength="20" />
+          <Property Name="MaKM" Type="nvarchar" MaxLength="20" />
+          <Property Name="SoTienGiam" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <EntityType Name="DONVIVANCHUYEN">
           <Key>
@@ -136,6 +138,37 @@
           <Property Name="GioiTinhKH" Type="bit" />
           <Property Name="NgaySinhKH" Type="date" />
           <Property Name="LoaiKH" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KHUYENMAI">
+          <Key>
+            <PropertyRef Name="MaKM" />
+          </Key>
+          <Property Name="MaKM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="TenKM" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="MoTaKM" Type="nvarchar(max)" />
+          <Property Name="AnhBannerKM" Type="nvarchar(max)" />
+          <Property Name="ThuTuHienThi" Type="int" />
+          <Property Name="MaVoucher" Type="nvarchar" MaxLength="50" />
+          <Property Name="LoaiGiam" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="GiaTriGiam" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="GiamToiDa" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="DonToiThieu" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SoLuotToiDa" Type="int" />
+          <Property Name="SoLuotDaDung" Type="int" Nullable="false" />
+          <Property Name="SoLanDungMoiKH" Type="int" Nullable="false" />
+          <Property Name="NgayBatDau" Type="datetime" Nullable="false" />
+          <Property Name="NgayKetThuc" Type="datetime" Nullable="false" />
+          <Property Name="TrangThaiKM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" Nullable="false" />
+          <Property Name="MaNV" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="KHUYENMAI_SANPHAM">
+          <Key>
+            <PropertyRef Name="MaKM" />
+            <PropertyRef Name="MaSP" />
+          </Key>
+          <Property Name="MaKM" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="MaSP" Type="nvarchar" MaxLength="20" Nullable="false" />
         </EntityType>
         <EntityType Name="LICHSUVANCHUYEN">
           <Key>
@@ -257,6 +290,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.V_HOADON' does not have a p
             <PropertyRef Name="TrangThaiDonHang" />
             <PropertyRef Name="NVNhanDon" />
             <PropertyRef Name="PhiVanChuyen" />
+            <PropertyRef Name="SoTienGiam" />
           </Key>
           <Property Name="MaHD" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="NgayLapHD" Type="datetime" Nullable="false" />
@@ -275,6 +309,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.V_HOADON' does not have a p
           <Property Name="TongTamTinh" Type="decimal" Precision="38" Scale="0" />
           <Property Name="TienThue" Type="decimal" Precision="38" Scale="6" />
           <Property Name="PhiVanChuyen" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="SoTienGiam" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="TongTien" Type="decimal" Precision="38" Scale="0" />
           <Property Name="TenDVVC" Type="nvarchar" MaxLength="100" />
           <Property Name="LoaiPhi" Type="nvarchar" MaxLength="20" />
@@ -325,7 +360,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_DONHANG__MaDH__7D439ABD">
+        <Association Name="FK__CT_DONHANG__MaDH__114A936A">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -339,7 +374,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CT_DONHANG__MaSP__7E37BEF6">
+        <Association Name="FK__CT_DONHANG__MaSP__123EB7A3">
           <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
           <End Role="CT_DONHANG" Type="Self.CT_DONHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -429,7 +464,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONHANG__MaKH__7A672E12">
+        <Association Name="FK__DONHANG__MaKH__0B91BA14">
           <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -441,7 +476,19 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DONHANG__MaNV__797309D9">
+        <Association Name="FK__DONHANG__MaKM__0C85DE4D">
+          <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="0..1" />
+          <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHUYENMAI">
+              <PropertyRef Name="MaKM" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="MaKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DONHANG__MaNV__0A9D95DB">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="*" />
           <ReferentialConstraint>
@@ -477,7 +524,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOADON__MaDH__0E6E26BF">
+        <Association Name="FK__HOADON__MaDH__22751F6C">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -489,7 +536,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HOADON__MaNV__114A936A">
+        <Association Name="FK__HOADON__MaNV__25518C17">
           <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
           <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
           <ReferentialConstraint>
@@ -515,7 +562,45 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__LICHSUVANC__MaVC__0A9D95DB">
+        <Association Name="FK__KHUYENMAI___MaKM__04E4BC85">
+          <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="KHUYENMAI_SANPHAM" Type="Self.KHUYENMAI_SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHUYENMAI">
+              <PropertyRef Name="MaKM" />
+            </Principal>
+            <Dependent Role="KHUYENMAI_SANPHAM">
+              <PropertyRef Name="MaKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHUYENMAI___MaSP__05D8E0BE">
+          <End Role="SANPHAM" Type="Self.SANPHAM" Multiplicity="1" />
+          <End Role="KHUYENMAI_SANPHAM" Type="Self.KHUYENMAI_SANPHAM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Principal>
+            <Dependent Role="KHUYENMAI_SANPHAM">
+              <PropertyRef Name="MaSP" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHUYENMAI__MaNV__00200768">
+          <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+          <End Role="KHUYENMAI" Type="Self.KHUYENMAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="KHUYENMAI">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__LICHSUVANC__MaVC__1EA48E88">
           <End Role="VANCHUYEN" Type="Self.VANCHUYEN" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
@@ -579,7 +664,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VANCHUYEN__MaDH__04E4BC85">
+        <Association Name="FK__VANCHUYEN__MaDH__18EBB532">
           <End Role="DONHANG" Type="Self.DONHANG" Multiplicity="1" />
           <End Role="VANCHUYEN" Type="Self.VANCHUYEN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -591,7 +676,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VANCHUYEN__MaDVV__05D8E0BE">
+        <Association Name="FK__VANCHUYEN__MaDVV__19DFD96B">
           <End Role="DONVIVANCHUYEN" Type="Self.DONVIVANCHUYEN" Multiplicity="1" />
           <End Role="VANCHUYEN" Type="Self.VANCHUYEN" Multiplicity="*" />
           <ReferentialConstraint>
@@ -627,6 +712,8 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           <EntitySet Name="GIOHANG" EntityType="Self.GIOHANG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HOADON" EntityType="Self.HOADON" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="KHACHHANG" EntityType="Self.KHACHHANG" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHUYENMAI" EntityType="Self.KHUYENMAI" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KHUYENMAI_SANPHAM" EntityType="Self.KHUYENMAI_SANPHAM" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LICHSUVANCHUYEN" EntityType="Self.LICHSUVANCHUYEN" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHACUNGCAP" EntityType="Self.NHACUNGCAP" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NHANVIEN" EntityType="Self.NHANVIEN" Schema="dbo" store:Type="Tables" />
@@ -654,6 +741,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
     [V_HOADON].[TongTamTinh] AS [TongTamTinh], 
     [V_HOADON].[TienThue] AS [TienThue], 
     [V_HOADON].[PhiVanChuyen] AS [PhiVanChuyen], 
+    [V_HOADON].[SoTienGiam] AS [SoTienGiam], 
     [V_HOADON].[TongTien] AS [TongTien], 
     [V_HOADON].[TenDVVC] AS [TenDVVC], 
     [V_HOADON].[LoaiPhi] AS [LoaiPhi], 
@@ -681,11 +769,11 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="BBKIEMNGHIEM" EntitySet="BBKIEMNGHIEM" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_DONHANG__MaDH__7D439ABD" Association="Self.FK__CT_DONHANG__MaDH__7D439ABD">
+          <AssociationSet Name="FK__CT_DONHANG__MaDH__114A936A" Association="Self.FK__CT_DONHANG__MaDH__114A936A">
             <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="CT_DONHANG" EntitySet="CT_DONHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__CT_DONHANG__MaSP__7E37BEF6" Association="Self.FK__CT_DONHANG__MaSP__7E37BEF6">
+          <AssociationSet Name="FK__CT_DONHANG__MaSP__123EB7A3" Association="Self.FK__CT_DONHANG__MaSP__123EB7A3">
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="CT_DONHANG" EntitySet="CT_DONHANG" />
           </AssociationSet>
@@ -713,11 +801,15 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="CTKIEMNGHIEM" EntitySet="CTKIEMNGHIEM" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONHANG__MaKH__7A672E12" Association="Self.FK__DONHANG__MaKH__7A672E12">
+          <AssociationSet Name="FK__DONHANG__MaKH__0B91BA14" Association="Self.FK__DONHANG__MaKH__0B91BA14">
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
             <End Role="DONHANG" EntitySet="DONHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__DONHANG__MaNV__797309D9" Association="Self.FK__DONHANG__MaNV__797309D9">
+          <AssociationSet Name="FK__DONHANG__MaKM__0C85DE4D" Association="Self.FK__DONHANG__MaKM__0C85DE4D">
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
+            <End Role="DONHANG" EntitySet="DONHANG" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DONHANG__MaNV__0A9D95DB" Association="Self.FK__DONHANG__MaNV__0A9D95DB">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="DONHANG" EntitySet="DONHANG" />
           </AssociationSet>
@@ -729,11 +821,11 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             <End Role="SANPHAM" EntitySet="SANPHAM" />
             <End Role="GIOHANG" EntitySet="GIOHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOADON__MaDH__0E6E26BF" Association="Self.FK__HOADON__MaDH__0E6E26BF">
+          <AssociationSet Name="FK__HOADON__MaDH__22751F6C" Association="Self.FK__HOADON__MaDH__22751F6C">
             <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOADON__MaNV__114A936A" Association="Self.FK__HOADON__MaNV__114A936A">
+          <AssociationSet Name="FK__HOADON__MaNV__25518C17" Association="Self.FK__HOADON__MaNV__25518C17">
             <End Role="NHANVIEN" EntitySet="NHANVIEN" />
             <End Role="HOADON" EntitySet="HOADON" />
           </AssociationSet>
@@ -741,7 +833,19 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             <End Role="USERS" EntitySet="USERS" />
             <End Role="KHACHHANG" EntitySet="KHACHHANG" />
           </AssociationSet>
-          <AssociationSet Name="FK__LICHSUVANC__MaVC__0A9D95DB" Association="Self.FK__LICHSUVANC__MaVC__0A9D95DB">
+          <AssociationSet Name="FK__KHUYENMAI___MaKM__04E4BC85" Association="Self.FK__KHUYENMAI___MaKM__04E4BC85">
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
+            <End Role="KHUYENMAI_SANPHAM" EntitySet="KHUYENMAI_SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHUYENMAI___MaSP__05D8E0BE" Association="Self.FK__KHUYENMAI___MaSP__05D8E0BE">
+            <End Role="SANPHAM" EntitySet="SANPHAM" />
+            <End Role="KHUYENMAI_SANPHAM" EntitySet="KHUYENMAI_SANPHAM" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHUYENMAI__MaNV__00200768" Association="Self.FK__KHUYENMAI__MaNV__00200768">
+            <End Role="NHANVIEN" EntitySet="NHANVIEN" />
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAI" />
+          </AssociationSet>
+          <AssociationSet Name="FK__LICHSUVANC__MaVC__1EA48E88" Association="Self.FK__LICHSUVANC__MaVC__1EA48E88">
             <End Role="VANCHUYEN" EntitySet="VANCHUYEN" />
             <End Role="LICHSUVANCHUYEN" EntitySet="LICHSUVANCHUYEN" />
           </AssociationSet>
@@ -761,11 +865,11 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             <End Role="DANHMUCSANPHAM" EntitySet="DANHMUCSANPHAM" />
             <End Role="SANPHAM" EntitySet="SANPHAM" />
           </AssociationSet>
-          <AssociationSet Name="FK__VANCHUYEN__MaDH__04E4BC85" Association="Self.FK__VANCHUYEN__MaDH__04E4BC85">
+          <AssociationSet Name="FK__VANCHUYEN__MaDH__18EBB532" Association="Self.FK__VANCHUYEN__MaDH__18EBB532">
             <End Role="DONHANG" EntitySet="DONHANG" />
             <End Role="VANCHUYEN" EntitySet="VANCHUYEN" />
           </AssociationSet>
-          <AssociationSet Name="FK__VANCHUYEN__MaDVV__05D8E0BE" Association="Self.FK__VANCHUYEN__MaDVV__05D8E0BE">
+          <AssociationSet Name="FK__VANCHUYEN__MaDVV__19DFD96B" Association="Self.FK__VANCHUYEN__MaDVV__19DFD96B">
             <End Role="DONVIVANCHUYEN" EntitySet="DONVIVANCHUYEN" />
             <End Role="VANCHUYEN" EntitySet="VANCHUYEN" />
           </AssociationSet>
@@ -815,6 +919,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           <NavigationProperty Name="DONHANGs" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaNV__797309D9" FromRole="NHANVIEN" ToRole="DONHANG" />
           <NavigationProperty Name="HOADONs" Relationship="SHOPGUITARSINHVIENModel.FK__HOADON__MaNV__114A936A" FromRole="NHANVIEN" ToRole="HOADON" />
           <NavigationProperty Name="PHIEUNHAPs" Relationship="SHOPGUITARSINHVIENModel.FK__PHIEUNHAP__MaNV__5629CD9C" FromRole="NHANVIEN" ToRole="PHIEUNHAP" />
+          <NavigationProperty Name="KHUYENMAIs" Relationship="SHOPGUITARSINHVIENModel.FK__KHUYENMAI__MaNV__00200768" FromRole="NHANVIEN" ToRole="KHUYENMAI" />
         </EntityType>
         <EntityType Name="USER">
           <Key>
@@ -991,6 +1096,19 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             <Parameter Name="OldPass" Mode="In" Type="String" />
             <Parameter Name="NewPass" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="KHUYENMAIs" EntityType="SHOPGUITARSINHVIENModel.KHUYENMAI" />
+          <AssociationSet Name="FK__DONHANG__MaKM__0C85DE4D" Association="SHOPGUITARSINHVIENModel.FK__DONHANG__MaKM__0C85DE4D">
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+            <End Role="DONHANG" EntitySet="DONHANGs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__KHUYENMAI__MaNV__00200768" Association="SHOPGUITARSINHVIENModel.FK__KHUYENMAI__MaNV__00200768">
+            <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+          </AssociationSet>
+          <AssociationSet Name="KHUYENMAI_SANPHAM" Association="SHOPGUITARSINHVIENModel.KHUYENMAI_SANPHAM">
+            <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+            <End Role="SANPHAM" EntitySet="SANPHAMs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="DANHMUCSANPHAM">
           <Key>
@@ -1022,6 +1140,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           <NavigationProperty Name="CTKIEMKEs" Relationship="SHOPGUITARSINHVIENModel.FK__CTKIEMKE__MaSP__6754599E" FromRole="SANPHAM" ToRole="CTKIEMKE" />
           <NavigationProperty Name="CTKIEMNGHIEMs" Relationship="SHOPGUITARSINHVIENModel.FK__CTKIEMNGHI__MaSP__6EF57B66" FromRole="SANPHAM" ToRole="CTKIEMNGHIEM" />
           <NavigationProperty Name="GIOHANGs" Relationship="SHOPGUITARSINHVIENModel.FK__GIOHANG__MaSP__71D1E811" FromRole="SANPHAM" ToRole="GIOHANG" />
+          <NavigationProperty Name="KHUYENMAIs" Relationship="SHOPGUITARSINHVIENModel.KHUYENMAI_SANPHAM" FromRole="SANPHAM" ToRole="KHUYENMAI" />
         </EntityType>
         <Association Name="FK__SANPHAM__MaLoaiS__5FB337D6">
           <End Type="SHOPGUITARSINHVIENModel.DANHMUCSANPHAM" Role="DANHMUCSANPHAM" Multiplicity="0..1" />
@@ -1129,6 +1248,9 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           <NavigationProperty Name="NHANVIEN" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaNV__797309D9" FromRole="DONHANG" ToRole="NHANVIEN" />
           <NavigationProperty Name="HOADONs" Relationship="SHOPGUITARSINHVIENModel.FK__HOADON__MaDH__0E6E26BF" FromRole="DONHANG" ToRole="HOADON" />
           <NavigationProperty Name="VANCHUYENs" Relationship="SHOPGUITARSINHVIENModel.FK__VANCHUYEN__MaDH__04E4BC85" FromRole="DONHANG" ToRole="VANCHUYEN" />
+          <Property Name="MaKM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="SoTienGiam" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <NavigationProperty Name="KHUYENMAI" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaKM__0C85DE4D" FromRole="DONHANG" ToRole="KHUYENMAI" />
         </EntityType>
         <EntityType Name="DONVIVANCHUYEN">
           <Key>
@@ -1243,6 +1365,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             <PropertyRef Name="TrangThaiDonHang" />
             <PropertyRef Name="NVNhanDon" />
             <PropertyRef Name="PhiVanChuyen" />
+            <PropertyRef Name="SoTienGiam" />
           </Key>
           <Property Name="MaHD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="NgayLapHD" Type="DateTime" Nullable="false" Precision="3" />
@@ -1268,6 +1391,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           <Property Name="NgayGuiHang" Type="DateTime" Precision="3" />
           <Property Name="NgayDuKien" Type="DateTime" Precision="3" />
           <Property Name="NgayNhanHang" Type="DateTime" Precision="3" />
+          <Property Name="SoTienGiam" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="VW_BaoCaoTonKho">
           <Key>
@@ -1547,6 +1671,60 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="KHUYENMAI">
+          <Key>
+            <PropertyRef Name="MaKM" />
+          </Key>
+          <Property Name="MaKM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="TenKM" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MoTaKM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AnhBannerKM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ThuTuHienThi" Type="Int32" />
+          <Property Name="MaVoucher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiGiam" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="GiaTriGiam" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="GiamToiDa" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DonToiThieu" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="SoLuotToiDa" Type="Int32" />
+          <Property Name="SoLuotDaDung" Type="Int32" Nullable="false" />
+          <Property Name="SoLanDungMoiKH" Type="Int32" Nullable="false" />
+          <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TrangThaiKM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DONHANGs" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaKM__0C85DE4D" FromRole="KHUYENMAI" ToRole="DONHANG" />
+          <NavigationProperty Name="NHANVIEN" Relationship="SHOPGUITARSINHVIENModel.FK__KHUYENMAI__MaNV__00200768" FromRole="KHUYENMAI" ToRole="NHANVIEN" />
+          <NavigationProperty Name="SANPHAMs" Relationship="SHOPGUITARSINHVIENModel.KHUYENMAI_SANPHAM" FromRole="KHUYENMAI" ToRole="SANPHAM" />
+        </EntityType>
+        <Association Name="FK__DONHANG__MaKM__0C85DE4D">
+          <End Type="SHOPGUITARSINHVIENModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="0..1" />
+          <End Type="SHOPGUITARSINHVIENModel.DONHANG" Role="DONHANG" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHUYENMAI">
+              <PropertyRef Name="MaKM" />
+            </Principal>
+            <Dependent Role="DONHANG">
+              <PropertyRef Name="MaKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__KHUYENMAI__MaNV__00200768">
+          <End Type="SHOPGUITARSINHVIENModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+          <End Type="SHOPGUITARSINHVIENModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NHANVIEN">
+              <PropertyRef Name="MaNV" />
+            </Principal>
+            <Dependent Role="KHUYENMAI">
+              <PropertyRef Name="MaNV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="KHUYENMAI_SANPHAM">
+          <End Type="SHOPGUITARSINHVIENModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="*" />
+          <End Type="SHOPGUITARSINHVIENModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1700,6 +1878,8 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           <EntitySetMapping Name="DONHANGs">
             <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.DONHANG">
               <MappingFragment StoreEntitySet="DONHANG">
+                <ScalarProperty Name="SoTienGiam" ColumnName="SoTienGiam" />
+                <ScalarProperty Name="MaKM" ColumnName="MaKM" />
                 <ScalarProperty Name="MaKH" ColumnName="MaKH" />
                 <ScalarProperty Name="MaNV" ColumnName="MaNV" />
                 <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
@@ -1808,6 +1988,7 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           <EntitySetMapping Name="V_HOADON">
             <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.V_HOADON">
               <MappingFragment StoreEntitySet="V_HOADON">
+                <ScalarProperty Name="SoTienGiam" ColumnName="SoTienGiam" />
                 <ScalarProperty Name="NgayNhanHang" ColumnName="NgayNhanHang" />
                 <ScalarProperty Name="NgayDuKien" ColumnName="NgayDuKien" />
                 <ScalarProperty Name="NgayGuiHang" ColumnName="NgayGuiHang" />
@@ -1849,6 +2030,38 @@ warning 6002: The table/view 'SHOPGUITARSINHVIEN.dbo.VW_BaoCaoTonKho' does not h
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="LAPPHIEUNHAP" FunctionName="SHOPGUITARSINHVIENModel.Store.LAPPHIEUNHAP" />
           <FunctionImportMapping FunctionImportName="SP_DoiMatKhau" FunctionName="SHOPGUITARSINHVIENModel.Store.SP_DoiMatKhau" />
+          <EntitySetMapping Name="KHUYENMAIs">
+            <EntityTypeMapping TypeName="SHOPGUITARSINHVIENModel.KHUYENMAI">
+              <MappingFragment StoreEntitySet="KHUYENMAI">
+                <ScalarProperty Name="MaNV" ColumnName="MaNV" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="TrangThaiKM" ColumnName="TrangThaiKM" />
+                <ScalarProperty Name="NgayKetThuc" ColumnName="NgayKetThuc" />
+                <ScalarProperty Name="NgayBatDau" ColumnName="NgayBatDau" />
+                <ScalarProperty Name="SoLanDungMoiKH" ColumnName="SoLanDungMoiKH" />
+                <ScalarProperty Name="SoLuotDaDung" ColumnName="SoLuotDaDung" />
+                <ScalarProperty Name="SoLuotToiDa" ColumnName="SoLuotToiDa" />
+                <ScalarProperty Name="DonToiThieu" ColumnName="DonToiThieu" />
+                <ScalarProperty Name="GiamToiDa" ColumnName="GiamToiDa" />
+                <ScalarProperty Name="GiaTriGiam" ColumnName="GiaTriGiam" />
+                <ScalarProperty Name="LoaiGiam" ColumnName="LoaiGiam" />
+                <ScalarProperty Name="MaVoucher" ColumnName="MaVoucher" />
+                <ScalarProperty Name="ThuTuHienThi" ColumnName="ThuTuHienThi" />
+                <ScalarProperty Name="AnhBannerKM" ColumnName="AnhBannerKM" />
+                <ScalarProperty Name="MoTaKM" ColumnName="MoTaKM" />
+                <ScalarProperty Name="TenKM" ColumnName="TenKM" />
+                <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="KHUYENMAI_SANPHAM" TypeName="SHOPGUITARSINHVIENModel.KHUYENMAI_SANPHAM" StoreEntitySet="KHUYENMAI_SANPHAM">
+            <EndProperty Name="SANPHAM">
+              <ScalarProperty Name="MaSP" ColumnName="MaSP" />
+            </EndProperty>
+            <EndProperty Name="KHUYENMAI">
+              <ScalarProperty Name="MaKM" ColumnName="MaKM" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

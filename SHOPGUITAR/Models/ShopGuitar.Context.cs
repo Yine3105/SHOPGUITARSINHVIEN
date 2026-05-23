@@ -49,6 +49,7 @@ namespace SHOPGUITAR.Models
         public virtual DbSet<VANCHUYEN> VANCHUYENs { get; set; }
         public virtual DbSet<V_HOADON> V_HOADON { get; set; }
         public virtual DbSet<VW_BaoCaoTonKho> VW_BaoCaoTonKho { get; set; }
+        public virtual DbSet<KHUYENMAI> KHUYENMAIs { get; set; }
     
         public virtual ObjectResult<string> LAPPHIEUNHAP(string soPN, string nguoiGiao, string maNCC, string maNV)
         {

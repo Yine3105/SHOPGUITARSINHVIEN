@@ -30,6 +30,8 @@ namespace SHOPGUITAR.Models
         public string GhiChu { get; set; }
         public string MaNV { get; set; }
         public string MaKH { get; set; }
+        public string MaKM { get; set; }
+        public decimal SoTienGiam { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CT_DONHANG> CT_DONHANG { get; set; }
@@ -39,5 +41,6 @@ namespace SHOPGUITAR.Models
         public virtual ICollection<HOADON> HOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VANCHUYEN> VANCHUYENs { get; set; }
+        public virtual KHUYENMAI KHUYENMAI { get; set; }
     }
 }

@@ -41,6 +41,7 @@
     <NavigationProperty Name="DONHANGs" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaNV__797309D9" FromRole="NHANVIEN" ToRole="DONHANG" />
     <NavigationProperty Name="HOADONs" Relationship="SHOPGUITARSINHVIENModel.FK__HOADON__MaNV__114A936A" FromRole="NHANVIEN" ToRole="HOADON" />
     <NavigationProperty Name="PHIEUNHAPs" Relationship="SHOPGUITARSINHVIENModel.FK__PHIEUNHAP__MaNV__5629CD9C" FromRole="NHANVIEN" ToRole="PHIEUNHAP" />
+    <NavigationProperty Name="KHUYENMAIs" Relationship="SHOPGUITARSINHVIENModel.FK__KHUYENMAI__MaNV__00200768" FromRole="NHANVIEN" ToRole="KHUYENMAI" />
   </EntityType>
   <EntityType Name="USER">
     <Key>
@@ -217,6 +218,19 @@
       <Parameter Name="OldPass" Mode="In" Type="String" />
       <Parameter Name="NewPass" Mode="In" Type="String" />
     </FunctionImport>
+    <EntitySet Name="KHUYENMAIs" EntityType="SHOPGUITARSINHVIENModel.KHUYENMAI" />
+    <AssociationSet Name="FK__DONHANG__MaKM__0C85DE4D" Association="SHOPGUITARSINHVIENModel.FK__DONHANG__MaKM__0C85DE4D">
+      <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+      <End Role="DONHANG" EntitySet="DONHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KHUYENMAI__MaNV__00200768" Association="SHOPGUITARSINHVIENModel.FK__KHUYENMAI__MaNV__00200768">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+    </AssociationSet>
+    <AssociationSet Name="KHUYENMAI_SANPHAM" Association="SHOPGUITARSINHVIENModel.KHUYENMAI_SANPHAM">
+      <End Role="KHUYENMAI" EntitySet="KHUYENMAIs" />
+      <End Role="SANPHAM" EntitySet="SANPHAMs" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="DANHMUCSANPHAM">
     <Key>
@@ -248,6 +262,7 @@
     <NavigationProperty Name="CTKIEMKEs" Relationship="SHOPGUITARSINHVIENModel.FK__CTKIEMKE__MaSP__6754599E" FromRole="SANPHAM" ToRole="CTKIEMKE" />
     <NavigationProperty Name="CTKIEMNGHIEMs" Relationship="SHOPGUITARSINHVIENModel.FK__CTKIEMNGHI__MaSP__6EF57B66" FromRole="SANPHAM" ToRole="CTKIEMNGHIEM" />
     <NavigationProperty Name="GIOHANGs" Relationship="SHOPGUITARSINHVIENModel.FK__GIOHANG__MaSP__71D1E811" FromRole="SANPHAM" ToRole="GIOHANG" />
+    <NavigationProperty Name="KHUYENMAIs" Relationship="SHOPGUITARSINHVIENModel.KHUYENMAI_SANPHAM" FromRole="SANPHAM" ToRole="KHUYENMAI" />
   </EntityType>
   <Association Name="FK__SANPHAM__MaLoaiS__5FB337D6">
     <End Type="SHOPGUITARSINHVIENModel.DANHMUCSANPHAM" Role="DANHMUCSANPHAM" Multiplicity="0..1" />
@@ -355,6 +370,9 @@
     <NavigationProperty Name="NHANVIEN" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaNV__797309D9" FromRole="DONHANG" ToRole="NHANVIEN" />
     <NavigationProperty Name="HOADONs" Relationship="SHOPGUITARSINHVIENModel.FK__HOADON__MaDH__0E6E26BF" FromRole="DONHANG" ToRole="HOADON" />
     <NavigationProperty Name="VANCHUYENs" Relationship="SHOPGUITARSINHVIENModel.FK__VANCHUYEN__MaDH__04E4BC85" FromRole="DONHANG" ToRole="VANCHUYEN" />
+    <Property Name="MaKM" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="SoTienGiam" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <NavigationProperty Name="KHUYENMAI" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaKM__0C85DE4D" FromRole="DONHANG" ToRole="KHUYENMAI" />
   </EntityType>
   <EntityType Name="DONVIVANCHUYEN">
     <Key>
@@ -469,6 +487,7 @@
       <PropertyRef Name="TrangThaiDonHang" />
       <PropertyRef Name="NVNhanDon" />
       <PropertyRef Name="PhiVanChuyen" />
+      <PropertyRef Name="SoTienGiam" />
     </Key>
     <Property Name="MaHD" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="NgayLapHD" Type="DateTime" Nullable="false" Precision="3" />
@@ -494,6 +513,7 @@
     <Property Name="NgayGuiHang" Type="DateTime" Precision="3" />
     <Property Name="NgayDuKien" Type="DateTime" Precision="3" />
     <Property Name="NgayNhanHang" Type="DateTime" Precision="3" />
+    <Property Name="SoTienGiam" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
   </EntityType>
   <EntityType Name="VW_BaoCaoTonKho">
     <Key>
@@ -772,5 +792,59 @@
         <PropertyRef Name="MaNV" />
       </Dependent>
     </ReferentialConstraint>
+  </Association>
+  <EntityType Name="KHUYENMAI">
+    <Key>
+      <PropertyRef Name="MaKM" />
+    </Key>
+    <Property Name="MaKM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TenKM" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MoTaKM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AnhBannerKM" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ThuTuHienThi" Type="Int32" />
+    <Property Name="MaVoucher" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiGiam" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="GiaTriGiam" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="GiamToiDa" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DonToiThieu" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="SoLuotToiDa" Type="Int32" />
+    <Property Name="SoLuotDaDung" Type="Int32" Nullable="false" />
+    <Property Name="SoLanDungMoiKH" Type="Int32" Nullable="false" />
+    <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TrangThaiKM" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="NgayTao" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="MaNV" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="DONHANGs" Relationship="SHOPGUITARSINHVIENModel.FK__DONHANG__MaKM__0C85DE4D" FromRole="KHUYENMAI" ToRole="DONHANG" />
+    <NavigationProperty Name="NHANVIEN" Relationship="SHOPGUITARSINHVIENModel.FK__KHUYENMAI__MaNV__00200768" FromRole="KHUYENMAI" ToRole="NHANVIEN" />
+    <NavigationProperty Name="SANPHAMs" Relationship="SHOPGUITARSINHVIENModel.KHUYENMAI_SANPHAM" FromRole="KHUYENMAI" ToRole="SANPHAM" />
+  </EntityType>
+  <Association Name="FK__DONHANG__MaKM__0C85DE4D">
+    <End Type="SHOPGUITARSINHVIENModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="0..1" />
+    <End Type="SHOPGUITARSINHVIENModel.DONHANG" Role="DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHUYENMAI">
+        <PropertyRef Name="MaKM" />
+      </Principal>
+      <Dependent Role="DONHANG">
+        <PropertyRef Name="MaKM" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KHUYENMAI__MaNV__00200768">
+    <End Type="SHOPGUITARSINHVIENModel.NHANVIEN" Role="NHANVIEN" Multiplicity="0..1" />
+    <End Type="SHOPGUITARSINHVIENModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MaNV" />
+      </Principal>
+      <Dependent Role="KHUYENMAI">
+        <PropertyRef Name="MaNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="KHUYENMAI_SANPHAM">
+    <End Type="SHOPGUITARSINHVIENModel.KHUYENMAI" Role="KHUYENMAI" Multiplicity="*" />
+    <End Type="SHOPGUITARSINHVIENModel.SANPHAM" Role="SANPHAM" Multiplicity="*" />
   </Association>
 </Schema>

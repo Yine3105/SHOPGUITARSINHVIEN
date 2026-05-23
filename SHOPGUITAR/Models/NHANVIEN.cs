@@ -22,6 +22,7 @@ namespace SHOPGUITAR.Models
             this.DONHANGs = new HashSet<DONHANG>();
             this.HOADONs = new HashSet<HOADON>();
             this.PHIEUNHAPs = new HashSet<PHIEUNHAP>();
+            this.KHUYENMAIs = new HashSet<KHUYENMAI>();
         }
     
         public string MaNV { get; set; }
@@ -48,5 +49,7 @@ namespace SHOPGUITAR.Models
         public virtual ICollection<HOADON> HOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PHIEUNHAP> PHIEUNHAPs { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<KHUYENMAI> KHUYENMAIs { get; set; }
     }
 }
