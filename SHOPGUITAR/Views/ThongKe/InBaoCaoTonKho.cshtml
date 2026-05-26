@@ -1,0 +1,164 @@
+﻿@model List<SHOPGUITAR.Models.VW_BaoCaoTonKho>
+@{
+    Layout = null; 
+    int stt = 1;
+    int tongNhap = 0;
+    int tongBan = 0;
+    int tongTon = 0;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Biểu mẫu: Báo cáo Tồn Kho</title>
+    <style>
+        /* Định dạng font chữ chuẩn văn bản hành chính */
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14pt;
+            color: #000;
+            background-color: #fff;
+        }
+
+        /* Tiêu đề biểu mẫu bên ngoài bảng */
+        .header-title {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 14pt;
+        }
+
+        /* Cấu trúc Bảng đen trắng */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Dòng BÁO CÁO THỐNG KÊ */
+        .title-row th {
+            font-size: 16pt;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        /* Xử lý ẩn viền ngang (border) cho 3 dòng Thông tin chung */
+        .info-row td {
+            text-align: left;
+            font-weight: bold;
+            font-size: 14pt;
+            padding: 5px 10px;
+        }
+
+        .border-none-bottom {
+            border-bottom: none !important;
+        }
+
+        .border-none-top-bottom {
+            border-top: none !important;
+            border-bottom: none !important;
+        }
+
+        .border-none-top {
+            border-top: none !important;
+        }
+
+        .header-cols th {
+            font-weight: bold;
+            font-size: 13pt;
+        }
+
+        .text-left {
+            text-align: left !important;
+        }
+
+        .text-right {
+            text-align: right !important;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-title">
+        Biểu mẫu: Biểu mẫu báo cáo tồn kho
+    </div>
+
+    <table>
+        <tr class="title-row">
+            <th colspan="7">BÁO CÁO THỐNG KÊ TỒN KHO</th>
+        </tr>
+
+        <tr class="info-row">
+            <td colspan="7" class="border-none-bottom">Từ ngày: ..............................</td>
+        </tr>
+        <tr class="info-row">
+            <td colspan="7" class="border-none-top-bottom">Đến ngày: ..............................</td>
+        </tr>
+        <tr class="info-row">
+            <td colspan="7" class="border-none-top">Người lập báo cáo: @ViewBag.NguoiLap</td>
+        </tr>
+
+        <tr class="header-cols">
+            <th style="width: 5%;">STT</th>
+            <th style="width: 12%;">Mã sản<br />phẩm</th>
+            <th style="width: 25%;">Tên sản<br />phẩm</th>
+            <th style="width: 15%;">Loại sản<br />phẩm</th>
+            <th style="width: 14%;">Số lượng nhập</th>
+            <th style="width: 14%;">Số lượng bán</th>
+            <th style="width: 15%;">Tồn kho</th>
+        </tr>
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                tongNhap += item.TongSoLuongNhap;
+                tongBan += item.TongSoLuongBan;
+                tongTon += item.TonKhoThucTe;
+
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.MaSP</td>
+                    <td class="text-left">@(string.IsNullOrEmpty(item.TenSP) ? "---" : item.TenSP)</td>
+
+                    <td>---</td>
+
+                    <td>@item.TongSoLuongNhap</td>
+                    <td>@item.TongSoLuongBan</td>
+                    <td>@item.TonKhoThucTe</td>
+                </tr>
+                stt++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td>1</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        }
+
+        <tr>
+            <td colspan="4" class="text-right" style="font-weight: bold; font-size: 14pt;">Tổng số lượng: </td>
+            <td style="font-weight: bold; font-size: 14pt;">@tongNhap</td>
+            <td style="font-weight: bold; font-size: 14pt;">@tongBan</td>
+            <td style="font-weight: bold; font-size: 14pt;">@tongTon</td>
+        </tr>
+    </table>
+
+</body>
+</html>

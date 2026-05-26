@@ -1,0 +1,228 @@
+﻿@model List<SHOPGUITAR.Models.USER>
+@{
+    ViewBag.Title = "Phân Quyền";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    var danhSachRoles = ViewBag.DanhSachRoles as List<string>;
+    var danhSachStatus = ViewBag.DanhSachStatus as List<string>;
+}
+
+<style>
+    .bg-guitar-main {
+        background-color: #8B322C !important;
+    }
+
+    .text-guitar-main {
+        color: #8B322C !important;
+    }
+
+    .form-select-custom:focus {
+        border-color: #8B322C !important;
+        box-shadow: 0 0 0 0.25rem rgba(139, 50, 44, 0.25) !important;
+    }
+
+    .table-custom th, .table-custom td {
+        padding: 1rem 0.75rem !important;
+        vertical-align: middle !important;
+    }
+
+    /* Thay đổi màu sắc tiêu đề bảng từ xám đen sang đỏ đô tinh tế */
+    .table-header-custom {
+        background-color: #8B322C !important;
+        color: #ffffff !important;
+    }
+
+    /* Định màu chữ động cho các Option trạng thái tùy chọn */
+    .status-active {
+        color: #198754;
+        font-weight: bold;
+    }
+
+    .status-pause {
+        color: #ffc107;
+        font-weight: bold;
+    }
+
+    .status-leave {
+        color: #6c757d;
+        font-weight: bold;
+    }
+
+    .status-locked {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    /* Hiệu ứng hover cho nút Quay về trang chủ */
+    .btn-back-home {
+        background-color: #ffffff !important;
+        color: #8B322C !important;
+        font-weight: bold;
+        border: 1px solid #ffffff !important;
+        transition: all 0.3s ease;
+        border-radius: 20px;
+    }
+
+        .btn-back-home:hover {
+            background-color: #f8f9fa !important;
+            color: #a93d36 !important;
+            transform: translateX(-3px);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+        }
+</style>
+
+<div class="p-4" style="background: #f8f9fa; min-height: 80vh;">
+    <div class="card shadow border-0" style="border-radius: 16px;">
+
+        <div class="card-header text-white py-3 d-flex justify-content-between align-items-center bg-guitar-main" style="border-top-left-radius: 16px; border-top-right-radius: 16px;">
+            <h5 class="m-0 fw-bold"><i class="fa-solid fa-users-gear me-2"></i> QUẢN LÝ QUYỀN & TRẠNG THÁI </h5>
+
+            <div class="d-flex align-items-center gap-2">
+                <a href="@Url.Action("Index", "Home")" class="btn btn-sm btn-back-home px-3 py-1.5">
+                    <i class="fa-solid fa-house me-1"></i> Về trang chủ
+                </a>
+                <span class="badge bg-light text-guitar-main fw-bold px-3 py-2" style="border-radius: 20px; font-size: 0.8rem;">Khu vực Admin</span>
+            </div>
+        </div>
+
+        <div class="card-body p-4">
+            <div id="alert-box" class="alert d-none text-center fw-bold shadow-sm" style="border-radius: 10px; font-size: 0.95rem; padding: 12px; margin-bottom: 20px;"></div>
+
+            <div class="table-responsive shadow-sm border" style="border-radius: 12px; overflow: hidden;">
+                <table class="table table-hover table-custom align-middle m-0">
+                    <thead class="table-header-custom">
+                        <tr>
+                            <th class="ps-4" style="width: 8%;">ID</th>
+                            <th style="width: 22%;">Tài khoản (Username)</th>
+                            <th style="width: 25%;">Email / Số điện thoại</th>
+                            <th style="width: 22%;" class="text-center">Trạng thái nhân viên</th>
+                            <th style="width: 23%;" class="text-center pe-4">Quyền hệ thống (Role)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model)
+                        {
+                            string statusClass = "";
+                            if (user.user_status == "Đang hoạt động" || user.user_status == "Hoạt động") { statusClass = "text-success fw-bold"; }
+                            else if (user.user_status == "Tạm nghỉ") { statusClass = "text-warning fw-bold"; }
+                            else if (user.user_status == "Nghỉ làm") { statusClass = "text-secondary fw-bold"; }
+                            else { statusClass = "text-danger fw-bold"; }
+
+                            <tr>
+                                <td class="fw-bold ps-4 text-secondary">#@user.user_id</td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-guitar-main text-white d-flex justify-content-center align-items-center me-2 shadow-sm" style="width: 32px; height: 32px; border-radius: 50%;">
+                                            <i class="fa-solid fa-user small"></i>
+                                        </div>
+                                        <span class="fw-bold text-dark">@user.user_name</span>
+                                    </div>
+                                </td>
+                                <td class="small text-muted">
+                                    <div class="mb-1"><i class="fa-regular fa-envelope me-1 text-guitar-main"></i> @(user.user_email ?? "Chưa cập nhật")</div>
+                                    <div><i class="fa-solid fa-phone me-1 text-guitar-main"></i> @(user.user_phone ?? "Chưa cập nhật")</div>
+                                </td>
+
+                                <td class="text-center">
+                                    <select class="form-select form-select-sm form-select-custom ddl-status mx-auto @statusClass" data-userid="@user.user_id" style="border-radius: 8px; cursor: pointer; max-width: 170px;">
+                                        @foreach (var status in danhSachStatus)
+                                        {
+                                            if (status == "Bị khóa") { continue; }
+
+                                            string optionClass = "";
+                                            if (status == "Đang hoạt động" || status == "Hoạt động") { optionClass = "status-active"; }
+                                            else if (status == "Tạm nghỉ") { optionClass = "status-pause"; }
+                                            else if (status == "Nghỉ làm") { optionClass = "status-leave"; }
+                                            else { optionClass = "status-locked"; }
+
+                                            <option value="@status" class="@optionClass" @(user.user_status == status ? "selected" : "")>@status</option>
+                                        }
+                                    </select>
+                                </td>
+
+                                <td class="pe-4 text-center">
+                                    <select class="form-select form-select-sm form-select-custom ddl-role mx-auto fw-bold text-secondary" data-userid="@user.user_id" style="border-radius: 8px; cursor: pointer; max-width: 170px;">
+                                        @foreach (var role in danhSachRoles)
+                                        {
+                                            <option value="@role" @(user.user_role == role ? "selected" : "")>@role</option>
+                                        }
+                                    </select>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // 1. Lắng nghe sự kiện đổi Quyền (Role)
+            $('.ddl-role').change(function () {
+                var select = $(this);
+                var uId = select.data('userid');
+                var roleValue = select.val();
+
+                select.css('opacity', '0.5');
+                $.ajax({
+                    url: '@Url.Action("CapNhatQuyen", "Admin")',
+                    type: 'POST',
+                    data: { userId: uId, newRole: roleValue },
+                    success: function (res) {
+                        select.css('opacity', '1');
+                        hienThiThongBao(res.success, res.message);
+                    },
+                    error: function () {
+                        select.css('opacity', '1');
+                        alert('Lỗi kết nối hệ thống!');
+                    }
+                });
+            });
+
+            // 2. Lắng nghe sự kiện đổi Trạng thái (Status)
+            $('.ddl-status').change(function () {
+                var select = $(this);
+                var uId = select.data('userid');
+                var statusValue = select.val();
+
+                select.removeClass('text-success text-warning text-secondary text-danger');
+                if (statusValue === 'Đang hoạt động' || statusValue === 'Hoạt động') select.addClass('text-success');
+                else if (statusValue === 'Tạm nghỉ') select.addClass('text-warning');
+                else if (statusValue === 'Nghỉ làm') select.addClass('text-secondary');
+                else select.addClass('text-danger');
+
+                select.css('opacity', '0.5');
+                $.ajax({
+                    url: '@Url.Action("CapNhatTrangThai", "Admin")',
+                    type: 'POST',
+                    data: { userId: uId, newStatus: statusValue },
+                    success: function (res) {
+                        select.css('opacity', '1');
+                        hienThiThongBao(res.success, res.message);
+                    },
+                    error: function () {
+                        select.css('opacity', '1');
+                        alert('Lỗi kết nối hệ thống!');
+                    }
+                });
+            });
+
+            function hienThiThongBao(isSuccess, message) {
+                var alertBox = $('#alert-box');
+                alertBox.removeClass('d-none alert-success alert-danger');
+
+                if (isSuccess) {
+                    alertBox.addClass('alert-success').html('<i class="fa-solid fa-circle-check me-1"></i> ' + message);
+                } else {
+                    alertBox.addClass('alert-danger').html('<i class="fa-solid fa-circle-exclamation me-1"></i> ' + message);
+                }
+
+                setTimeout(function () {
+                    alertBox.addClass('d-none');
+                }, 2000);
+            }
+        });
+    </script>
+}

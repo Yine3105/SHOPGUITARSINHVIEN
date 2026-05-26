@@ -1,0 +1,136 @@
+﻿@model List<SHOPGUITAR.Controllers.SanPhamBanChayViewModel>
+@{
+    Layout = null; 
+    int stt = 1;
+
+    int tongBan = Model != null ? Model.Sum(x => x.SoLuongBan) : 0;
+    decimal tongDoanhThu = Model != null ? Model.Sum(x => x.DoanhThu) : 0;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Báo Cáo Sản Phẩm Bán Chạy</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14pt;
+            color: #000;
+            background-color: #fff;
+            line-height: 1.3;
+        }
+
+        .header-title {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 14pt;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Định dạng các dòng tiêu đề */
+        .title-row th {
+            font-size: 16pt;
+            font-weight: bold;
+            padding: 12px;
+        }
+
+        .info-row td {
+            text-align: left;
+            font-weight: bold;
+            font-size: 14pt;
+            padding: 6px 10px;
+        }
+
+        /* Xử lý ẩn viền ngang (border) cho 3 dòng Thông tin chung */
+        .border-none {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .text-right {
+            text-align: right !important;
+        }
+
+        .text-left {
+            text-align: left !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-title">Biểu mẫu báo cáo doanh thu theo sản phẩm</div>
+
+    <table>
+        <tr class="title-row">
+            <th colspan="7">BÁO CÁO DOANH THU</th>
+        </tr>
+
+        <tr class="info-row">
+            <td colspan="7" style="border-bottom: none;">Từ ngày: @ViewBag.TuNgay</td>
+        </tr>
+        <tr class="info-row">
+            <td colspan="7" class="border-none">Đến ngày: @ViewBag.DenNgay</td>
+        </tr>
+        <tr class="info-row">
+            <td colspan="7" style="border-top: none;">Người lập báo cáo: @ViewBag.NguoiLap</td>
+        </tr>
+
+        <tr style="font-weight: bold; font-size: 13pt; background-color: #fcfcfc;">
+            <th style="width: 5%;">STT</th>
+            <th style="width: 12%;">Mã sản<br />phẩm</th>
+            <th style="width: 28%;">Tên sản<br />phẩm</th>
+            <th style="width: 15%;">Loại sản<br />phẩm</th>
+            <th style="width: 11%;">Số lượng<br />bán</th>
+            <th style="width: 14%;">Giá bán</th>
+            <th style="width: 15%;">Doanh thu<br />(VNĐ)</th>
+        </tr>
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.MaSP</td>
+                    <td class="text-left">@item.TenSP</td>
+                    <td>@(string.IsNullOrEmpty(item.TenLoaiSP) ? "---" : item.TenLoaiSP)</td>
+                    <td>@item.SoLuongBan</td>
+                    <td class="text-right">@item.GiaBan.ToString("N0")</td>
+                    <td class="text-right">@item.DoanhThu.ToString("N0")</td>
+                </tr>
+                stt++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="7">Không có dữ liệu</td>
+            </tr>
+        }
+
+        <tr style="font-weight: bold; font-size: 14pt;">
+            <td colspan="4" class="text-right">Tổng số đơn hàng:</td>
+            <td colspan="3" class="text-right">@ViewBag.TongSoDon</td>
+        </tr>
+        <tr style="font-weight: bold; font-size: 14pt;">
+            <td colspan="4" class="text-right">Tổng sản phẩm bán:</td>
+            <td colspan="3" class="text-right">@tongBan</td>
+        </tr>
+        <tr style="font-weight: bold; font-size: 14pt;">
+            <td colspan="4" class="text-right">Tổng doanh thu:</td>
+            <td colspan="3" class="text-right">@tongDoanhThu.ToString("N0")</td>
+        </tr>
+    </table>
+</body>
+</html>

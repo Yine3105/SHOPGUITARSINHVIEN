@@ -30,5 +30,11 @@ namespace SHOPGUITAR.Models
             // Ảnh upload qua HttpPostedFileBase
             public HttpPostedFileBase AnhKH { get; set; }
         }
+        public class DoiMatKhauModel
+        {
+            public string MatKhauCu { get; set; }
+            public string MatKhauMoi { get; set; }
+            public string XacNhanMatKhau { get; set; }
+        }
     }
 }

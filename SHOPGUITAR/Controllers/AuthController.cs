@@ -181,6 +181,64 @@ namespace SHOPGUITAR.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        // ==================== ĐỔI MẬT KHẨU ====================
+        [HttpGet]
+        public ActionResult DoiMatKhau()
+        {
+            // Bắt buộc phải đăng nhập mới được đổi mật khẩu
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("DangNhap", "Auth");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult DoiMatKhau(AuthModel.DoiMatKhauModel model)
+        {
+            if (Session["UserId"] == null)
+            {
+                return RedirectToAction("DangNhap", "Auth");
+            }
+
+            // 1. Kiểm tra dữ liệu đầu vào
+            if (string.IsNullOrWhiteSpace(model.MatKhauCu))
+            { ViewBag.Error = "Vui lòng nhập mật khẩu hiện tại!"; return View(model); }
+
+            if (string.IsNullOrWhiteSpace(model.MatKhauMoi) || model.MatKhauMoi.Length < 6)
+            { ViewBag.Error = "Mật khẩu mới phải có ít nhất 6 ký tự!"; return View(model); }
+
+            if (model.MatKhauMoi != model.XacNhanMatKhau)
+            { ViewBag.Error = "Xác nhận mật khẩu không khớp!"; return View(model); }
+
+            // 2. Lấy thông tin user từ Database
+            int userId = (int)Session["UserId"];
+            var user = db.USERS.FirstOrDefault(u => u.user_id == userId);
+
+            if (user == null)
+            {
+                ViewBag.Error = "Lỗi hệ thống: Không tìm thấy tài khoản!";
+                return View(model);
+            }
+
+            // 3. Đối chiếu mật khẩu cũ bằng BCrypt
+            if (!BCrypt.Net.BCrypt.Verify(model.MatKhauCu, user.user_password))
+            {
+                ViewBag.Error = "Mật khẩu hiện tại không chính xác!";
+                return View(model);
+            }
+
+            // 4. Mã hóa mật khẩu mới và lưu xuống cơ sở dữ liệu
+            user.user_password = BCrypt.Net.BCrypt.HashPassword(model.MatKhauMoi);
+
+            // user.NgayDoiMatKhauGanNhat = DateTime.Now;
+
+            db.SaveChanges();
+
+            ViewBag.Success = "Đổi mật khẩu thành công!";
+            return View();
+        }
+
         // ==================== ĐĂNG XUẤT ====================
         public ActionResult DangXuat()
         {

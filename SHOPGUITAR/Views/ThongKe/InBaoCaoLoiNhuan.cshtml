@@ -1,0 +1,121 @@
+﻿@model List<SHOPGUITAR.Controllers.SanPhamBanChayViewModel>
+@{
+    Layout = null;
+    int stt = 1;
+    decimal tongDoanhThu = Model != null ? Model.Sum(x => x.DoanhThu) : 0;
+    decimal tongChiPhi = Model != null ? Model.Sum(x => x.GiaNhap * x.SoLuongBan) : 0;
+    decimal tongLoiNhuan = Model != null ? Model.Sum(x => x.LoiNhuan) : 0;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Biểu mẫu 11</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14pt;
+            color: #000;
+            background-color: #fff;
+        }
+
+        .header-title {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 14pt;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .title-row th {
+            font-size: 16pt;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .info-row td {
+            text-align: left;
+            font-weight: bold;
+            font-size: 14pt;
+            padding: 5px 10px;
+        }
+
+        .border-none {
+            border-top: none;
+            border-bottom: none;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .text-left {
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-title">Biểu mẫu 11: Biểu mẫu báo cáo lợi nhuận</div>
+    <table>
+        <tr class="title-row"><th colspan="7">BÁO CÁO LỢI NHUẬN</th></tr>
+        <tr class="info-row"><td colspan="7" style="border-bottom: none;">Từ ngày: @ViewBag.TuNgay</td></tr>
+        <tr class="info-row"><td colspan="7" class="border-none">Đến ngày: @ViewBag.DenNgay</td></tr>
+        <tr class="info-row"><td colspan="7" class="border-none">Người lập báo cáo: @ViewBag.NguoiLap</td></tr>
+        <tr class="info-row"><td colspan="7" style="border-top: none; font-style: italic; font-weight: normal;">Công thức: (Giá bán - Giá nhập) x Số lượng bán</td></tr>
+
+        <tr style="font-weight: bold; font-size: 13pt;">
+            <th style="width: 5%;">STT</th>
+            <th style="width: 15%;">Mã sản<br />phẩm</th>
+            <th style="width: 25%;">Tên sản<br />phẩm</th>
+            <th style="width: 15%;">Giá<br />nhập</th>
+            <th style="width: 15%;">Giá bán</th>
+            <th style="width: 10%;">Số lượng<br />bán</th>
+            <th style="width: 15%;">Lợi nhuận</th>
+        </tr>
+
+        @if (Model != null && Model.Any())
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.MaSP</td>
+                    <td class="text-left">@item.TenSP</td>
+                    <td class="text-right">@item.GiaNhap.ToString("N0")</td>
+                    <td class="text-right">@item.GiaBan.ToString("N0")</td>
+                    <td>@item.SoLuongBan</td>
+                    <td class="text-right">@item.LoiNhuan.ToString("N0")</td>
+                </tr>
+                stt++;
+            }
+        }
+        else
+        {
+            <tr><td colspan="7">Không có dữ liệu</td></tr>
+        }
+
+        <tr style="font-weight: bold; font-size: 14pt;">
+            <td colspan="6" class="text-right">Tổng doanh thu:</td>
+            <td class="text-right">@tongDoanhThu.ToString("N0")</td>
+        </tr>
+        <tr style="font-weight: bold; font-size: 14pt;">
+            <td colspan="6" class="text-right">Tổng chi phí nhập:</td>
+            <td class="text-right">@tongChiPhi.ToString("N0")</td>
+        </tr>
+        <tr style="font-weight: bold; font-size: 14pt;">
+            <td colspan="6" class="text-right">Tổng lợi nhuận:</td>
+            <td class="text-right">@tongLoiNhuan.ToString("N0")</td>
+        </tr>
+    </table>
+</body>
+</html>

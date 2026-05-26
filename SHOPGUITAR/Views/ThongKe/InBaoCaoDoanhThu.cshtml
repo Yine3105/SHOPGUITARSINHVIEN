@@ -1,0 +1,108 @@
+﻿@model List<SHOPGUITAR.Controllers.BaoCaoNgayViewModel>
+@{
+    Layout = null;
+    int stt = 1;
+    decimal tongDoanhThu = 0;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Biểu mẫu - Báo cáo Doanh thu</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 14pt;
+            color: #000;
+            background-color: #fff;
+        }
+
+        .header-title {
+            text-align: center;
+            margin-bottom: 5px;
+            font-size: 14pt;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .title-row th {
+            font-size: 16pt;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .author-row td {
+            text-align: left;
+            font-weight: bold;
+            border-bottom: 1px solid black;
+        }
+
+        .header-cols th {
+            font-weight: bold;
+        }
+
+        .footer-row td {
+            font-weight: bold;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header-title">Biểu mẫu: Biểu mẫu báo cáo doanh thu theo ngày/tháng</div>
+
+    <table>
+        <tr class="title-row"><th colspan="5">BÁO CÁO DOANH THU</th></tr>
+        <tr class="author-row"><td colspan="5">Người lập báo cáo: @ViewBag.NguoiLap</td></tr>
+        <tr class="header-cols">
+            <th style="width: 10%;">STT</th>
+            <th style="width: 25%;">Ngày</th>
+            <th style="width: 20%;">Số đơn hàng</th>
+            <th style="width: 25%;">Số sản phẩm bán ra</th>
+            <th style="width: 20%;">Doanh thu<br />(VNĐ)</th>
+        </tr>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            foreach (var item in Model)
+            {
+                tongDoanhThu += item.DoanhThu;
+                <tr>
+                    <td>@stt</td>
+                    <td>@item.Ngay.ToString("dd/MM/yyyy")</td>
+                    <td>@item.SoDonHang</td>
+                    <td>@item.SoSanPhamBanRa</td>
+                    <td class="text-right">@item.DoanhThu.ToString("N0")</td>
+                </tr>
+                stt++;
+            }
+        }
+        else
+        {
+            <tr><td>1</td><td></td><td></td><td></td><td></td></tr>
+        }
+
+        <tr class="footer-row">
+            <td colspan="4" class="text-right">Tổng doanh thu:</td>
+            <td class="text-right">@tongDoanhThu.ToString("N0")</td>
+        </tr>
+    </table>
+</body>
+</html>
