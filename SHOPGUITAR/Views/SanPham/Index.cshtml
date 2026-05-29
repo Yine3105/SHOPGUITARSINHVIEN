@@ -1,0 +1,73 @@
+﻿@model IEnumerable<SHOPGUITAR.Models.SANPHAM>
+
+@{
+    ViewBag.Title = "Quản lý sản phẩm";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>Quản lý sản phẩm</h2>
+<p>
+    <a href="@Url.Action("Index", "Home")" class="btn-back">
+        ← Quay lại trang chủ
+    </a>
+</p>
+<p>
+    @Html.ActionLink("Thêm sản phẩm", "Create", null, new { @class = "btn btn-primary" })
+</p>
+@if (TempData["Error"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["Error"]
+    </div>
+}
+
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["Success"]
+    </div>
+}
+<table class="table table-bordered">
+    <tr>
+        <th>Mã SP</th>
+        <th>Ảnh</th>
+        <th>Tên sản phẩm</th>
+        <th>Thương hiệu</th>
+        <th>Giá bán</th>
+        <th>Số lượng</th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.MaSP</td>
+
+            <td>
+                <img src="~/Images/products/@item.AnhSP"
+                     width="80"
+                     height="80"
+                     style="object-fit:cover" />
+            </td>
+
+            <td>@item.TenSP</td>
+
+            <td>@item.ThuongHieu</td>
+
+            <td>
+                @item.GiaBan.ToString("N0") đ
+            </td>
+
+            <td>@item.SoLuongSP</td>
+
+            <td>
+                @Html.ActionLink("Sửa", "Edit", new { id = item.MaSP }) |
+
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.MaSP }) |
+
+                @Html.ActionLink("Xóa", "Delete", new { id = item.MaSP })
+            </td>
+        </tr>
+    }
+
+</table>
