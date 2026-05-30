@@ -1,0 +1,79 @@
+﻿@model IEnumerable<SHOPGUITAR.Models.SANPHAM>
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Quản lý tồn kho";
+}
+
+<div>
+    <div class="banner">
+        <div class="banner-logo">
+            <img src="~/Images/Chung/logo.png" alt="logo" />
+            <h5>GUITAR <br /> SINH VIÊN</h5>
+        </div>
+        <div class="search-form">
+            <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..." />
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="user-dropdown">
+            <button class="banner-dangnhap">
+                <i class="fa-solid fa-user"></i>
+                <span>Xin chào, @(Session["HoTen"] ?? "Admin")</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li><a href="#">Quản lý đơn hàng</a></li>
+                <li class="active"><a href="@Url.Action("TonKho", "QuanLySanPham")">Quản lý sản phẩm</a></li>
+                <li><a href="#">Quản lý khách hàng</a></li>
+            </ul>
+        </div>
+
+        <div class="content-area p-4">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h3 class="text-danger font-weight-bold">THỐNG KÊ TỒN KHO</h3>
+                <div>
+                    <a href="@Url.Action("LapBienBanKiemNghiem")" class="btn btn-warning text-dark font-weight-bold mr-2"><i class="fa-solid fa-clipboard-check"></i> Ghi Nhận Lỗi</a>
+                    <a href="@Url.Action("LapBienBanKiemKe")" class="btn btn-info text-white font-weight-bold mr-2"><i class="fa-solid fa-boxes-stacked"></i> Kiểm Kê Kho</a>
+                    <a href="@Url.Action("LapPhieuNhap")" class="btn btn-success"><i class="fa-solid fa-plus"></i> Nhập Hàng Mới</a>
+                </div>
+            </div>
+
+            <table class="table table-bordered table-hover bg-white">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>Tên Sản Phẩm</th>
+                        <th>Thương Hiệu</th>
+                        <th class="text-center">Tồn Kho</th>
+                        <th class="text-center">Tình Trạng</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.MaSP</td>
+                            <td>@item.TenSP</td>
+                            <td>@item.ThuongHieu</td>
+                            <td class="text-center font-weight-bold" style="font-size: 1.1rem;">@item.SoLuongSP</td>
+                            <td class="text-center">
+                                @if (item.SoLuongSP <= ViewBag.MucCanhBao)
+                                {
+                                    <span class="badge badge-danger p-2">Dưới định mức</span>
+                                }
+                                else
+                                {
+                                    <span class="badge badge-success p-2">An toàn</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

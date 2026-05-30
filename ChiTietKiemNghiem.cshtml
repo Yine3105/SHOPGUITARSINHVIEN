@@ -1,0 +1,68 @@
+﻿@model IEnumerable<SHOPGUITAR.Models.CTKIEMNGHIEM>
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Chi Tiết Kiểm Nghiệm";
+}
+
+<div class="content-area p-4">
+    <h3 class="text-warning mb-4">GHI NHẬN TÌNH TRẠNG LỖI (BB: <span class="text-danger">@ViewBag.SoBBKN</span>)</h3>
+
+    <div class="card p-3 border-warning mb-4 bg-light">
+        @using (Html.BeginForm("ChiTietKiemNghiem", "QuanLySanPham", FormMethod.Post))
+        {
+            <input type="hidden" name="SoBBKN" value="@ViewBag.SoBBKN" />
+            <div class="row align-items-end">
+                <div class="col-md-3">
+                    <label class="font-weight-bold">Mặt hàng:</label>
+                    @Html.DropDownList("MaSP", null, new { @class = "form-control" })
+                </div>
+                <div class="col-md-2">
+                    <label class="font-weight-bold">SL Chứng Từ:</label>
+                    <input type="number" name="SLChungTu" class="form-control" required min="1" value="1" />
+                </div>
+                <div class="col-md-2">
+                    <label class="font-weight-bold text-success">SL Đúng Quy Cách:</label>
+                    <input type="number" name="SLDungQuyCach" class="form-control" required min="0" value="0" />
+                </div>
+                <div class="col-md-2">
+                    <label class="font-weight-bold text-danger">SL Bị Lỗi:</label>
+                    <input type="number" name="SLLoi" class="form-control" required min="1" value="1" />
+                </div>
+                <div class="col-md-3 mt-3">
+                    <label class="font-weight-bold">Ghi Chú Lỗi (Xước, đứt dây...):</label>
+                    <input type="text" name="GhiChu" class="form-control" />
+                </div>
+                <div class="col-md-12 mt-3 text-right">
+                    <button type="submit" class="btn btn-warning font-weight-bold"><i class="fa-solid fa-plus"></i> Ghi Nhận Lỗi</button>
+                </div>
+            </div>
+        }
+    </div>
+
+    <table class="table table-bordered table-striped bg-white">
+        <thead class="thead-dark">
+            <tr>
+                <th>Mã SP</th>
+                <th>SL Hóa Đơn</th>
+                <th>Đạt Yêu Cầu</th>
+                <th class="text-danger">Số Lượng Lỗi</th>
+                <th>Tình Trạng (Ghi chú)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var ct in Model)
+            {
+                <tr>
+                    <td>@ct.MaSP</td>
+                    <td>@ct.SLChungTu</td>
+                    <td class="text-success font-weight-bold">@ct.SLDungQuyCach</td>
+                    <td class="text-danger font-weight-bold">@ct.SLLoi</td>
+                    <td>@ct.GhiChu</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="mt-4 text-right">
+        <a href="@Url.Action("TonKho")" class="btn btn-primary px-5">Xác Nhận Xong</a>
+    </div>
+</div>

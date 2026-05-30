@@ -1,0 +1,108 @@
+﻿@model IEnumerable<SHOPGUITAR.Models.CT_PHIEUNHAP>
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Quản lý tồn kho";
+}
+
+<div>
+    <div class="banner">
+        <div class="banner-logo">
+            <img src="~/Images/Chung/logo.png" alt="logo" />
+            <h5>GUITAR <br /> SINH VIÊN</h5>
+        </div>
+        <div class="search-form">
+            <input type="text" name="keyword" placeholder="Tìm kiếm sản phẩm..." />
+            <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+        <div class="user-dropdown">
+            <button class="banner-dangnhap">
+                <i class="fa-solid fa-user"></i>
+                <span>Xin chào, @(Session["HoTen"] ?? "Admin")</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="main-container">
+        <div class="sidebar">
+            <ul>
+                <li><a href="@Url.Action("Index", "Home")">Trang chủ</a></li>
+                <li><a href="#">Quản lý đơn hàng</a></li>
+                <li class="active"><a href="@Url.Action("TonKho", "QuanLySanPham")">Quản lý sản phẩm</a></li>
+                <li><a href="#">Quản lý khách hàng</a></li>
+            </ul>
+        </div>
+
+        <div class="content-area p-4">
+            <h3 class="text-primary mb-4">QUÉT HÀNG VÀO PHIẾU <span class="text-danger">@ViewBag.SoPN</span></h3>
+
+            <div class="card p-3 border-info mb-4 bg-light">
+                @using (Html.BeginForm("ChiTietNhap", "QuanLySanPham", FormMethod.Post))
+                {
+                    <input type="hidden" name="SoPN" value="@ViewBag.SoPN" />
+                    <div class="row align-items-end">
+                        <div class="col-md-4">
+                            <label class="font-weight-bold">Mặt hàng:</label>
+                            <div class="d-flex">
+                                @Html.DropDownList("MaSP", null, new { @class = "form-control mr-1" })
+
+                                <a href="@Url.Action("ThemSanPham", "QuanLySanPham")" target="_blank" class="btn btn-outline-success mr-1 text-nowrap" title="Tạo sản phẩm mới">
+                                    <i class="fa-solid fa-plus"></i> Tạo SP
+                                </a>
+
+                                <a href="" class="btn btn-outline-info text-nowrap" title="Tải lại danh sách mặt hàng">
+                                    <i class="fa-solid fa-rotate-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="font-weight-bold">SL Chứng Từ:</label>
+                            <input type="number" name="SLChungTu" class="form-control" required min="1" value="1" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="font-weight-bold text-danger">SL Thực Nhập:</label>
+                            <input type="number" name="SLThucNhap" class="form-control" required min="1" value="1" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <label class="font-weight-bold">Đơn Giá Mua:</label>
+                            <input type="number" name="DonGiaNhap" class="form-control" required min="0" />
+                        </div>
+
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-info w-100"><i class="fa-solid fa-plus"></i> Thêm</button>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <h5 class="mb-3">Danh sách mặt hàng đã quét:</h5>
+            <table class="table table-bordered table-striped bg-white">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Mã SP</th>
+                        <th>SL Thực Nhập</th>
+                        <th>Đơn Giá</th>
+                        <th>Thành Tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ct in Model)
+                    {
+                        <tr>
+                            <td>@ct.MaSP</td>
+                            <td class="font-weight-bold">@ct.SLThucNhap</td>
+                            <td>@String.Format("{0:0,0} đ", ct.DonGiaNhap)</td>
+                            <td class="font-weight-bold text-danger">@String.Format("{0:0,0} đ", ct.ThanhTien)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <div class="mt-4 text-right">
+                <a href="@Url.Action("TonKho")" class="btn btn-success px-5">Hoàn Tất Lô Hàng</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model SHOPGUITAR.Models.NHACUNGCAP
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Thêm Nhà Cung Cấp";
+}
+<div class="content-area p-4">
+    <h3 class="text-success mb-4">THÊM NHÀ CUNG CẤP MỚI</h3>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card p-4 shadow-sm border-success">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group"><label>Mã NCC:</label> @Html.TextBoxFor(m => m.MaNCC, new { @class = "form-control", required = "required" })</div>
+            <div class="form-group"><label>Tên Công Ty/Đối Tác:</label> @Html.TextBoxFor(m => m.TenNCC, new { @class = "form-control", required = "required" })</div>
+            <div class="form-group"><label>Số Điện Thoại:</label> @Html.TextBoxFor(m => m.SDT, new { @class = "form-control" })</div>
+            <div class="form-group"><label>Địa Chỉ:</label> @Html.TextBoxFor(m => m.DiaChi, new { @class = "form-control" })</div>
+            <button type="submit" class="btn btn-success mt-3">Lưu Thông Tin</button>
+        }
+    </div>
+</div>

@@ -1,0 +1,20 @@
+﻿@model SHOPGUITAR.Models.BBKIEMKE
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Lập Biên Bản Kiểm Kê";
+}
+
+<div class="content-area p-4">
+    <h3 class="text-info mb-4"><i class="fa-solid fa-boxes-stacked"></i> LẬP BIÊN BẢN KIỂM KÊ </h3>
+    <div class="card p-4 shadow-sm border-info">
+        @using (Html.BeginForm("LapBienBanKiemKe", "QuanLySanPham", FormMethod.Post))
+        {
+            <div class="form-group mb-4">
+                <label class="font-weight-bold">Số Biên Bản Kiểm Kê:</label>
+                @Html.TextBoxFor(m => m.SoBBKK, new { @class = "form-control", required = "required", placeholder = "VD: BBKK005..." })
+            </div>
+            <button type="submit" class="btn btn-info px-4 font-weight-bold text-white"> Tạo biên bản <i class="fa-solid fa-arrow-right"></i></button>
+            <a href="@Url.Action("TonKho")" class="btn btn-secondary">Hủy</a>
+        }
+    </div>
+</div>

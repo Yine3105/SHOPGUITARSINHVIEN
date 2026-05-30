@@ -1,0 +1,28 @@
+﻿@model SHOPGUITAR.Models.SANPHAM
+@{
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+    ViewBag.Title = "Thêm Sản Phẩm Mới";
+}
+<div class="content-area p-4">
+    <h3 class="text-success mb-4">THÊM SẢN PHẨM MỚI VÀO KHO</h3>
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="card p-4 shadow-sm border-success">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group"><label>Mã Sản Phẩm:</label> @Html.TextBoxFor(m => m.MaSP, new { @class = "form-control", required = "required" })</div>
+            <div class="form-group"><label>Tên Sản Phẩm Đầy Đủ:</label> @Html.TextBoxFor(m => m.TenSP, new { @class = "form-control", required = "required" })</div>
+
+            <div class="row">
+                <div class="col-md-6 form-group"><label>Loại Đàn:</label> @Html.DropDownList("MaLoaiSP", null, new { @class = "form-control" })</div>
+                <div class="col-md-6 form-group"><label>Thương Hiệu:</label> @Html.TextBoxFor(m => m.ThuongHieu, new { @class = "form-control" })</div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6 form-group"><label>Giá Mua Vào (VNĐ):</label> @Html.TextBoxFor(m => m.GiaNhap, new { @class = "form-control", type = "number", required = "required" })</div>
+                <div class="col-md-6 form-group"><label>Giá Bán Ra (VNĐ):</label> @Html.TextBoxFor(m => m.GiaBan, new { @class = "form-control", type = "number", required = "required" })</div>
+            </div>
+            <button type="submit" class="btn btn-success mt-3">Khởi Tạo Mã Hàng</button>
+        }
+    </div>
+</div>
